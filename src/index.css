@@ -1,0 +1,1432 @@
+
+.input{
+text-align: center;
+margin-left: 500px;
+background-color: rgb(255, 255, 255);
+font-size: small;
+padding: 80PX;
+width: 400px;
+height: 200PX;
+border-radius:20PX ;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+border: 1px,solid black;
+color: rgb(0, 0, 0);
+}
+
+.input1{
+text-align: center;
+margin-left: 500px;
+background-color: rgb(255, 255, 255);
+font-size: small;
+padding: 80PX;
+width: 400px;
+height: 250PX;
+border-radius:20PX ;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+border: 1px,solid black;
+color: rgb(0, 0, 0);
+}
+.ncontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.login{
+margin-left: 10px;
+color: rgb(0, 0, 0);
+margin-top: 20px;
+cursor: pointer;
+}
+.login:hover{
+  color: green;
+}
+.signup{
+margin-left: 70px;
+color: rgb(0, 0, 0);
+margin-top: 20px;
+cursor: pointer;
+}
+.signup:hover{
+  color: green;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;   /* full screen height */
+}
+
+.input2{
+text-align: center;
+margin-left: 500px;
+background-color: rgb(255, 255, 255);
+font-size: small;
+padding: 80PX;
+width: 400px;
+height: 200PX;
+border-radius:20PX ;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+border: 1px,solid black;
+color: rgb(0, 0, 0);
+margin-top: 40px;
+margin-bottom: 0px;
+}
+
+.fbutton{
+  width: 150px;
+  color: white;
+  background-color: green;
+  margin-top: 20px;
+  border-radius: 4px;
+  border: 1px,solid black;
+}
+
+.otp{
+  width: 100px;
+  margin-top: 20px;
+  border-radius:5px ;
+  border: 1px,solid black;
+}
+
+.fpass{
+margin-top: 20px;
+}
+
+.fconfirm{
+  margin-top: 20px;
+}
+
+.button{
+  width: 150px;
+  color: white;
+  background-color: green;
+  margin-top: 4px;
+  border-radius: 4px;
+  border: 1px,solid black;
+  margin-top: 15px;
+}
+
+.fobutton{
+  width: 170px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  margin-top: 4px;
+  border-radius: 4px;
+  border: none;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.phnum{
+  border-radius: 5px;
+  border: 1px,solid black;
+  width: 300px;
+  height:  30px;
+}
+
+.pass{
+  
+  border-radius: 5px;
+  border: 1px,solid black;
+  width: 300px;
+  height: 30PX;
+  position: relative;
+}
+
+.eyeicon{
+  position: absolute;
+  margin-left: -30px;
+  margin-top: 38px;
+  cursor: pointer;
+ 
+
+  color: black;
+}
+/* Desktop */
+.card {
+  text-align: center;
+  font-size: medium;
+  height: 450px;
+  width: 300px;
+  margin: 40px;
+  margin-top: 50px;
+  background-color: rgb(245, 247, 228);
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.card img {
+  height: 400px;
+  width: 300px;
+}
+
+
+/* Tablet */
+@media screen and (max-width: 992px) {
+  .card {
+    width: 45%;
+    height: auto;
+    margin: 20px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+@media screen and (max-width:600px){
+.card {
+    width: 90%;
+    /* 1. HEIGHT AUTO - Idhu thaan bottom line-ah content varaikkum expand pannum */
+    height: auto !important; 
+    margin: 20px auto;
+    
+    /* 2. FLEX LAYOUT - Ella items-aiyum vertical-ah neat-ah adukkum */
+    display: flex !important;
+    flex-direction: column;
+    
+    background-color: #fff;
+    
+    /* 3. BORDER - Ippo bottom-la full-ah theriyum */
+    border: 1px solid black !important; 
+    border-radius: 20px;
+    
+    /* Content veliya varaama round corners-ah maintain panna */
+    overflow: hidden; 
+    
+    /* Bottom-la konjam space (Padding) */
+    padding-bottom: 15px; 
+    box-sizing: border-box;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    /* Image-ku kela border venaam, card border-ae pothum */
+    border: none !important; 
+  }
+}
+
+.cards {
+
+text-align: center;
+font-size: 10px;
+height: 450px;
+margin: 40px;
+width: 300px;
+background-color:rgb(255, 255, 255) ;
+border: 1px solid rgb(0, 0, 0);
+font-size: medium;
+margin-top: 50px;
+display: inline-block;
+
+}
+.cards img{
+
+height: 400px;
+width: 300px;
+
+}
+
+.purchases{
+  background-color: green;
+  width: 150px;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-top: 0px;
+  color: rgb(255, 255, 255);
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.cart{
+  background-color: green;
+  width: 150px;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-top: 5px;
+  color: rgb(255, 255, 255);
+  margin-right: 20px;
+  cursor: pointer;
+}
+/* MOBILE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+  .cards {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 95% !important;   /* Mobile-la nalla perusa theriyum */
+    height: auto !important; 
+    margin: 20px auto !important; 
+    padding: 0 !important;   /* Image edge varaikkum stretch aaga 0 padding */
+    background-color: #fff;
+    
+    /* 1. OUTER BORDER & RADIUS */
+    border: 1px solid black !important; 
+    border-radius: 20px !important; /* Unga previous card maariyae even radius */
+    
+    /* 2. THE SECRET FOR EVEN CORNERS */
+    overflow: hidden !important; /* Image moolaigal veliya varaama cut pannum */
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .cards img {
+    width: 100% !important; 
+    height: auto !important; 
+    display: block !important; /* Bottom-la gap varaama thadukkum */
+    object-fit: cover;
+    
+    /* 3. RESET IMAGE RADIUS */
+    /* Image-ku radius kudutha thaan uneven aagum, so 0 aakkiyachu. 
+       Card-oda overflow-ae idhai perfect-ah cut pannidum. */
+    border-radius: 0 !important; 
+    border: none !important;
+    margin: 0 !important;
+  }
+
+  /* ❤️ HEART ICON - Image mela kattu padum */
+  .cards button[style*="position: absolute"] {
+    top: 15px !important;
+    right: 15px !important;
+    z-index: 10;
+  }
+
+  /* BIO & RATE (PRICE) - CENTER LOGIC */
+  .cards p, .cards h3 {
+    padding: 0 15px;        
+    margin: 10px 0;
+    text-align: center;     /* BIO AND RATE CENTERED HERE */
+    width: 100%;            /* Full width-la center aaga */
+  }
+
+  /* Bio Text Styling */
+  .cards p {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  /* SIZE SELECTION - CENTER LOGIC */
+  .cards div[style*="display: flex"] {
+    justify-content: center !important; /* Sizes-ah center-la kaatum */
+    padding: 0 15px;
+    margin: 15px 0 !important;
+  }
+
+  /* BUTTONS - SIDE BY SIDE */
+  .purchases, .cart {
+    width: 96% !important;  
+    display: inline-block !important;
+    margin: 10px 2% !important;
+    font-size: 12px;
+    padding: 12px 0;
+  }
+}
+
+.icons{
+  display:flex;
+  border-radius: 50%;
+  background-color: rgba(225, 225, 225 , 0.05 );
+  color: var(--transition);
+  border: 1px solid rgba(225, 225, 225 , 0.05 );
+  font-size: 22px;
+  padding : 21px;
+  height: 25px;
+  width: 25px;
+
+}
+
+.icons:hover{
+
+color: #ffffff;
+background-color:green;
+cursor: pointer;
+
+}
+
+.navlogo{
+  padding-left: 80px;
+  font-size: xx-large;
+  color: green;
+  font-weight: bold;
+}
+.navbar{
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px,120px;
+
+
+}
+
+.navmenu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+
+.search-container {
+  position: relative;
+  display: inline-block;
+  padding: auto;
+  padding-right: 150px;
+}
+
+.search-container input {
+  width: 450px;
+  padding: 10px 40px 10px 12px; /* right side padding for icon */
+  border: 1px solid #000000;
+  border-radius: 20px;
+  outline: none;
+}
+
+.search-container .search-icon {
+  padding-right: 160px;
+  position: absolute;
+  right: 12px;
+  top: 65%;
+  transform: translateY(-50%);
+  color: #000000;
+  cursor: pointer;
+  font-size: 22px;
+  padding: auto;
+  width: 25px;
+}
+/* Tablet View (max-width: 992px) */
+@media screen and (max-width: 992px) {
+  .navlogo {
+    padding-left: 20px;
+    font-size: 28px;
+  }
+
+  .search-container {
+    padding-right: 20px; /* Reduced desktop padding */
+  }
+
+  .search-container input {
+    width: 300px;
+  }
+}
+/* MOBILE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+
+  .navbar {
+    display: flex;
+    flex-direction: column; /* Keep column to avoid collapse */
+    align-items: center;
+    gap: 10px;
+    margin: 0; /* Resetting large desktop margins */
+  }
+
+  /* LOGO */
+  .navlogo {
+    padding-left: 0;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  /* SEARCH CONTAINER - Only moving this UP */
+  .search-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    padding-right: 0 !important; /* Force reset desktop padding */
+    padding-left: 15px; /* Small left padding for input */
+    position: relative;/* Mela poga intha line thaan mukkiyam */
+    margin-top: -15px; 
+  }
+
+  .search-container input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 20px;
+  }
+
+  /* SEARCH ICON POSITION FIX */
+  .search-container .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 65%; /* Vertical center */
+    transform: translateY(-50%);
+    padding: 0;
+    width: auto;
+    font-size: 18px;
+  }
+
+  /* ICONS MENU */
+  .navmenu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 5px; /* Adjust if icons need spacing from search */
+  }
+
+  .icons {
+    padding: 12px;
+    height: 20px;
+    width: 20px;
+    font-size: 18px;
+  }
+  .icons:hover, .icons:active {
+    color: #ffffff !important;
+    background-color: green !important;
+    cursor: pointer;
+  }
+
+  /* Search icon color fix (if needed) */
+  .search-container .search-icon:active {
+    color: green;
+  }
+
+}
+
+.buttons{
+  
+  margin-left: 600px;
+  color: rgb(255, 255, 255);
+  font-size: large;
+  margin-bottom: 7px;
+}
+
+.sizes{
+
+  margin-bottom: 70px;
+  margin-left: 50px;
+  font-size: medium;
+  margin-left: 15px
+}
+
+.titles{
+
+  margin-left: 110px;
+  margin-bottom: 20px;
+}
+
+.bcards{
+
+      
+text-align: center;
+font-size: 10px;
+height: 450px;
+margin: 40px;
+width: 300px;
+font-size: medium;
+margin-top: 50px;
+display: inline-block;
+border-radius:50px ;
+}
+
+.type{
+
+margin-left: 800px;
+margin-top: -700px;
+
+}
+
+.buysizes{
+margin-left: 800px;
+}
+
+.container{
+
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  width: 150px;
+  border-radius: 20px;
+  margin-left: 25px;
+  margin-top: 0px;
+  color: rgb(0, 0, 0);
+  margin-right: 20px;
+  width: 500px;
+  height: 40px;
+  font-size: large;
+  cursor: pointer;
+
+
+}
+
+.bicon {
+position: absolute;
+font-size: larger;
+display: flex;
+right: 350px;
+margin-top: -30px;
+color: rgb(255, 255, 255);
+
+}
+
+.container:hover{
+cursor: pointer;
+background-color: green;
+color: white;
+}
+/* MOBILE VIEW FIX */
+@media screen and (max-width: 600px) {
+
+/* 1. OUTER CONTAINER - Inga thaan border and round corners kudukanum */
+  .bcards {
+    width: 95% !important;   /* Side-la chinna gap neat-ah irukka */
+    margin: 15px auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: #fff;
+
+    /* BLACK BORDER & ROUND CORNERS */
+    border: 1px solid black !important; 
+    border-radius: 11px !important; /* Naalu pakkamum even-ah round aagum */
+
+    /* IMPORTANT: Image-oda sharp corners-ah cut panni ulla adakkum */
+    overflow: hidden !important; 
+    box-sizing: border-box;
+  }
+
+  /* 2. IMAGE - Outline border-ah thottu perusa theriyum */
+  .bcards img {
+    width: 100% !important;   
+    height: auto !important;
+    display: block !important; /* Bottom white gap-ah remove pannum */
+    object-fit: cover;
+    
+    /* Image-ku border/radius venaam, parent container-ae pathukkum */
+    border: none !important; 
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* 3. PRODUCT DATA (BIO) */
+  .type {
+    width: 90% !important;
+    margin: 15px auto 5px !important;
+    text-align: center;
+  }
+
+  .type h1 {
+    font-size: 20px !important;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  /* 4. SIZES & BUTTONS */
+  .buysizes {
+    width: 90% !important;
+    margin: 10px auto !important;
+    text-align: center;
+  }
+
+  /* SIZES ONE ROW CENTER */
+  .buysizes div[style*="display: flex"] {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 5px;
+  }
+
+  /* 5. ACTION BUTTONS - EVEN HEIGHT (50px) */
+  .container {
+    width: 100% !important;
+    height: 50px !important;
+    margin: 12px 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px !important;
+    border: 1px solid #000 !important;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #fff;
+  }
+
+  /* 6. ICON FIX */
+  .bicon {
+    position: static !important;
+    margin-left: 10px !important;
+    font-size: 18px !important;
+  }
+
+  /* Prevent Horizontal Scrolling */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  br { display: none; }
+}
+.information {
+  width: 500px;
+  padding: 30px;
+}
+
+.contact {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 20px;
+
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 18px;
+  border-radius: 6px;
+  border: 1px solid #000;
+  outline: none;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.name,
+.lname {
+  width: 50%;
+}
+
+.etc {
+  width: 320px;
+}
+
+.city {
+  width: 150px;
+}
+
+.state {
+  width: 150px;
+}
+
+.pincode {
+  width: 150px;
+}
+
+.box1 {
+  margin-top: 22px;
+}
+
+.box1 label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.box1 input[type="checkbox"] {
+  margin: 0;
+}
+
+/* Payment option row */
+.pm-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  max-width: 260px;
+  transition: all 0.9s ease;
+}
+
+/* Hover */
+.pm-row:hover {
+  border-color: green;
+  background-color: #f4fff9;
+}
+
+/* Custom radio */
+input.pm {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #777;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Checked */
+input.pm:checked {
+  border-color: green;
+}
+
+/* Inner dot */
+input.pm:checked::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: green;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+/* Text */
+.pm-row span {
+  font-size: 15px;
+}
+
+/* Highlight selected row */
+.pm-row:has(input.pm:checked) {
+  border-color:green;
+  background-color: green;
+  color: #ffffff;
+  font-weight: 500;
+}
+.order {
+  margin-top: 25px;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+/* MOBILE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+
+  /* 1. MAIN CONTAINER & SIDE SPACING */
+  .information {
+    width: 100% !important;
+    padding: 20px !important; /* Left & Right equal spacing */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    align-items: center;
+  }
+
+  /* 2. INPUT BOXES - EVEN HEIGHT (50px) */
+  input:not([type="checkbox"]):not([type="radio"]) {
+    width: 100% !important;
+    height: 50px !important;    /* ALL INPUTS EVEN HEIGHT */
+    padding: 0 15px !important;
+    margin-top: 15px !important;
+    border-radius: 8px !important;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    font-size: 15px;
+  }
+
+  /* 3. ROW & COLUMN LOGIC */
+  .row {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0 !important;
+  }
+
+  .name, .lname, .etc, .city, .state, .pincode {
+    width: 100% !important;
+  }
+
+  /* 4. PAYMENT ROWS - EVEN HEIGHT (50px) */
+  .pm-row {
+    width: 100% !important;
+    height: 50px !important;    /* MATCHING INPUT HEIGHT */
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 15px !important;
+    margin-bottom: 12px !important;
+    box-sizing: border-box;
+    border-radius: 8px !important;
+    max-width: 100% !important;
+  }
+
+  /* SMALL RADIO CIRCLE */
+  input.pm {
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 10px 0 0 !important;
+    flex-shrink: 0;
+  }
+
+  /* 5. CHECKBOX SECTION */
+  .box1 {
+    width: 100% !important;
+    margin: 20px 0 !important;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .box1 label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap; /* Text ore line-la vara */
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  /* 6. ORDER BUTTON - EVEN HEIGHT (50px) */
+  .order {
+    width: 100% !important;
+    height: 55px !important;    /* Slightly bigger for prominence */
+    margin-top: 20px !important;
+    padding: 0 !important;      /* Height handle pannum */
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* SIDE SCROLL PREVENTER */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+.lcards{
+margin: 20px;
+border: 1px,solid black;
+width: 1000px;
+height: 300px;
+}
+.likepageimg{
+
+  height: 200px;
+  width: 200px;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+.likepagetype{
+  margin-left: 250px;
+  margin-top: -150px;
+  position: relative;
+}
+.likepagerate{
+  margin-left: 250px;
+  margin-top: 10px;
+}
+.likepagebutton{
+  margin-left: 250px;
+  width: 12%;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  border: 1px,solid black;
+}
+.trash{
+  margin-left: 180px;
+  position:absolute;
+  margin-top: -70px;
+}
+/* MOBILE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+
+  /* 1. MAIN CARD - Full width and Auto height */
+  .lcards {
+    width: 90% !important;   /* Desktop 1000px override */
+    height: auto !important; /* Fixed 300px reset */
+    margin: 20px auto !important;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;  /* Top to Bottom align panna */
+    align-items: center;
+    position: relative;
+    border-radius: 15px;
+    border: 1px solid #000000 !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  /* 2. IMAGE - Centered and Proper Size */
+  .likepageimg {
+    width: 150px !important;
+    height: 150px !important;
+    margin: 20px 0 !important; /* Side margins reset */
+    object-fit: contain;
+  }
+
+  /* 3. TYPE (Product Name/Bio) */
+  .likepagetype {
+    margin: 10px 0 !important; /* Negative margin reset */
+    position: static !important;
+    text-align: center;
+    width: 90%;
+  }
+
+  .likepagetype h1, .likepagetype h2 {
+    font-size: 18px !important;
+  }
+
+  /* 4. RATE (Price) */
+  .likepagerate {
+    margin: 5px 0 !important; /* Left margin reset */
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+  }
+
+  /* 5. BUY / ACTION BUTTON */
+  .likepagebutton {
+    margin: 15px 0 !important; /* Left margin reset */
+    width: 80% !important;     /* Mobile-la button perusa click panna easy-ah irukkum */
+    height: 45px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 6. TRASH ICON (Delete Button) */
+  /* Idhu card-oda top right corner-la irundha nalla irukkum */
+  .trash {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important;
+    margin: 0 !important;
+    font-size: 22px;
+    color: #db0f0f; /* Red color for delete */
+    cursor: pointer;
+  }
+
+  /* 7. NO SIDE SCROLL */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+  }
+}
+.cartpageimg{
+
+  height: 200px;
+  width: 200px;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+.cartpagetype{
+  margin-left: 250px;
+  margin-top: -150px;
+  position: relative;
+}
+.cartpagerate{
+  margin-left: 250px;
+  margin-top: 10px;
+}
+
+.cartpagesize{
+    margin-left: 250px;
+  margin-top: 10px;
+}
+
+
+.cartpagebutton{
+  margin-left: 250px;
+  width: 12%;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  border: 1px,solid black;
+}
+.trash{
+  margin-left: 180px;
+  position:absolute;
+  margin-top: -70px;
+}
+/* MOBILE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+
+  /* 1. MAIN CARD WRAPPER */
+  /* Unga card div-ku desktop-la fixed width irundha adhai inga 92% aakkunga */
+  .cart-item-card, [class*="card"] { 
+    width: 92% !important;
+    height: auto !important;
+    margin: 15px auto !important;
+    padding-bottom: 20px;
+    display: flex !important;
+    flex-direction: column !important; /* Top to Bottom layout */
+    align-items: center;
+    position: relative;
+    border: 1px solid #000000 !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    background: #fff;
+  }
+
+  /* 2. IMAGE - CENTERED */
+  .cartpageimg {
+    width: 160px !important;
+    height: 160px !important;
+    margin: 20px auto !important; /* Side margins reset */
+    object-fit: contain;
+  }
+
+  /* 3. DETAILS SECTION (Type, Rate, Size) */
+  .cartpagetype, .cartpagerate, .cartpagesize {
+    margin-left: 0 !important;   /* Desktop 250px reset */
+    margin-top: 10px !important; /* Negative margin reset */
+    position: static !important;
+    text-align: center;
+    width: 100%;
+  }
+
+  .cartpagetype h1 {
+    font-size: 18px !important;
+    padding: 0 10px;
+  }
+
+  .cartpagerate {
+    font-size: 20px !important;
+    font-weight: bold;
+    color: green;
+  }
+
+  .cartpagesize {
+    font-size: 15px;
+    color: #555;
+  }
+
+  /* 4. BUY NOW BUTTON - FULL WIDTH LOOK */
+  .cartpagebutton {
+    margin-left: 0 !important;   /* Desktop 250px reset */
+    margin-top: 20px !important;
+    width: 85% !important;       /* Mobile-la perusa click panna easy-ah irukkum */
+    height: 48px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  /* 5. TRASH ICON (Delete) - Top Right Corner */
+  .trash {
+    position: absolute !important;
+    top: 15px !important;
+    right: 15px !important; /* Corner-ku thalliyachu */
+    margin: 0 !important;   /* Desktop absolute margins reset */
+    font-size: 22px;
+    color: #db0f0f;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  /* 6. PREVENT SIDE SCROLL */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+  }
+}
+.navbar2{
+
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+}
+.navlogo2{
+  
+  color: green;
+}
+.abutton{
+  background-color:transparent;
+  width: 150px;
+  height: 28px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+
+
+
+}
+
+
+.abutton:hover{
+  background-color: green;
+  color: white;
+}
+.asbar{
+margin-left: 40px;
+background-color: rgb(255, 255, 255);
+font-size: small;
+padding-left: 80PX;
+padding-right: 80PX;
+padding-bottom: 80PX;
+padding-top: 12px;
+width: 1300px;
+border-radius:20PX ;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+border: none;
+color: rgb(0, 0, 0);
+top: 50px;
+display: flex;
+justify-content: space-between;
+gap: 20px;
+}
+.tcard{
+margin: 20px;
+border: 1px,solid black;
+width: 600px;
+height: 300px;
+display: inline-block;
+margin-left: 100px;
+}
+.home6img{
+  height: 200px;
+  width: 200px;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+.home6orderid{
+  margin-left: 300px;
+  margin-top: -200px;
+}
+.home6size{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.home6rate{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.home6name{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.home6address{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.home6phonenum{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.home6orderdate{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.home6delivereddate{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.home6paymenttype{
+  margin-left: 300px;
+  margin-top: -10px;
+}
+.dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.dtitle {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.dcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.dcard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.dcard:hover {
+  transform: scale(1.05);
+}
+
+.dcard h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.dcard p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.dcharts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.dchart {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  border: 1px solid rgb(0, 0, 0);
+  padding: 20px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+th {
+  background-color: green;
+  
+}
+.acolor{
+  color: white;
+}
+.stock-input{
+  border:none;
+  height: 50px;
+}
+
+
+
+.navlogo1{
+  padding-left: 80px;
+  font-size: xx-large;
+  color: green;
+  font-weight: bold;
+  font-family:'Arial, sans-serif' ;
+}
+.navbar1{
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px,120px;
+  margin-top: 50px;
+}
+
+.icons1{
+  display:flex;
+  border-radius: 50%;
+  background-color: rgba(225, 225, 225 , 0.05 );
+  color: var(--transition);
+  border: 1px solid rgba(225, 225, 225 , 0.05 );
+  font-size: 22px;
+  padding : 21px;
+  height: 25px;
+  width: 25px;
+}
+.purchase{
+  background-color: green;
+  width: 80px;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-top: 30px;
+  color: rgb(255, 255, 255);
+  border: 1px ,solid black;
+}
+/* DESKTOP STYLE (Default) */
+.home-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}/* MOBILE VIEW (max-width: 600px) */
+/* MOBILE VIEW (max-width: 600px) */
+@media screen and (max-width: 600px) {
+
+  /* 1. SIDE SCROLL LOCK */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 2. SEARCH RESULTS CONTAINER */
+  .home-container {
+    display: flex !important;
+    flex-direction: column !important; /* One by one kela kela adukkum */
+    align-items: center !important;    /* Card-ah center-la vekkum */
+    gap: 20px !important;              /* Cards-ku naduvula spacing */
+    padding: 20px 0 !important;        /* Top & Bottom space */
+    width: 100% !important;
+    margin-top: 10px !important;
+    box-sizing: border-box;
+  }
+
+  /* 3. COMPACT CARD DESIGN (Width Kammi Panniyachu) */
+  .home-container > div { 
+    width: 85% !important;           /* Card size-ah 95%-la irunthu 85%-ku kuraichuruken */
+    max-width: 320px;                /* Romba perusa pogaama limit pannum */
+    display: flex !important;
+    flex-direction: column !important;
+    background: #ffffff;
+    border-radius: 20px !important;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Shadow konjam extra-va 'pop' aaga */
+    overflow: hidden;
+    padding-bottom: 15px;
+    border: 1px solid #000000;          /* Subtle border for card look */
+  }
+
+  /* 4. IMAGE - FITTING THE COMPACT CARD */
+  .home-container img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 300px;               /* Height-ah yum konjam kuraichuruken compact look-ku */
+    object-fit: cover !important;    
+    border-radius: 20px 20px 0 0 !important;
+    border: none !important;
+  }
+
+  /* 5. DATA CENTER ALIGNMENT */
+  .home-container .type, 
+  .home-container .buysizes,
+  .home-container h1,
+  .home-container p {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 10px 15px !important;
+    margin: 3px 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* 6. SIZES SECTION - SMALLER BUTTONS */
+  .buysizes h2 {
+    font-size: 16px !important;
+    margin: 5px 0 !important;
+  }
+
+  .buysizes div {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .buysizes button {
+    padding: 8px 12px !important;  /* Buttons size-ah yum konjam compact aakkiyachu */
+    font-size: 13px !important;
+  }
+
+  /* 7. HIDE BR */
+  br {
+    display: none;
+  }
+}
