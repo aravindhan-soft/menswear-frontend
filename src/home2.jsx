@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useWishlist } from "./context/WishlistContext";
 import { useCart } from "./context/CartContext";
 
-function Home2({ image, type, sizes , pv_id, sku_id, bio}) {
+function Home2({ image, type, sizes, pv_id, sku_id, bio }) {
   const [selectedSize, setSelectedSize] = useState(null);
   const [currentRate, setCurrentRate] = useState(null);
 
@@ -39,29 +39,28 @@ function Home2({ image, type, sizes , pv_id, sku_id, bio}) {
   };
 
   // 🛍 BUY NOW
-const handleBuy = () => {
-  if (!selectedSize || !currentRate) {
-    alert("Please select size");
-    return;
-  }
+  const handleBuy = () => {
+    if (!selectedSize || !currentRate) {
+      alert("Please select size");
+      return;
+    }
 
-  const productData = {
-    pv_id,
-    sku_id,
-    image,
-    type,
-    bio,
-    sizes: safeSizes,
-    selectedSize,
-    rate: currentRate,   // ✅ VERY IMPORTANT
+    const productData = {
+      pv_id,
+      sku_id,
+      image,
+      type,
+      bio,
+      sizes: safeSizes,
+      selectedSize,
+      rate: currentRate,
+    };
+
+    localStorage.setItem("selectedProduct", JSON.stringify(productData));
+    navigate("/buy", { state: { product: productData } });
   };
 
-  // ✅ Save for refresh support
-  localStorage.setItem("selectedProduct", JSON.stringify(productData));
-
-  navigate("/buy", { state: { product: productData } });
-};
-  // ❤️ LIKE BUTTON (🔥 NEW LOGIC)
+  // ❤️ LIKE BUTTON
   const handleLike = () => {
     if (!selectedSize || !currentRate) {
       alert("Please select size");
@@ -79,46 +78,25 @@ const handleBuy = () => {
   };
 
   return (
-    <div
-      className="cards"
-      style={{ position: "relative", width: "300px", height: "400px" }}
-    >
-      <div style={{ position: "relative" }}>
-        <img src={image} alt="shirt" />
-
-        {/* ❤️ LIKE */}
-        <button
-          onClick={handleLike}
-          style={{
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            border: "none",
-            background: "transparent",
-          }}
-        >
-          {isLiked ? (
-            <FaHeart size={26} color="red" />
-          ) : (
-            <FaRegHeart size={26} />
-          )}
+    <div className="cards">
+      <div className="card-image-wrapper">
+        <img src={image} alt={type} />
+        <button className="like-btn-mini" onClick={handleLike}>
+          {isLiked ? <FaHeart color="#ef4444" /> : <FaRegHeart />}
         </button>
       </div>
 
+      <div className="card-content-v2">
+        <p className="card-bio-v2">
+          {bio ? bio : "Premium Mens Wear"}
+        </p>
+        
+        <h3 className="card-rate-v2">
+          {currentRate ? `₹${currentRate}` : "---"}
+        </h3>
+      </div>
 
-<p style={{ fontSize: "20px",marginTop: "10px", color: "black" ,fontWeight: "bold"  }}>
-  {bio ? bio : "No description available"}
-</p>
-
-      {/* SIZE SELECT */}
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginTop: "20px",
-          flexWrap: "wrap",
-        }}
-      >
+      <div className="card-sizes-v2">
         {ALL_SIZES.map((sz) => {
           const found = safeSizes.find((s) => s.size === sz);
           const outOfStock = !found || found.quantity === 0;
@@ -127,20 +105,10 @@ const handleBuy = () => {
             <button
               key={sz}
               disabled={outOfStock}
+              className={`size-chip-v2 ${selectedSize === sz ? "active" : ""} ${outOfStock ? "out-of-stock" : ""}`}
               onClick={() => {
                 setSelectedSize(sz);
                 setCurrentRate(found.prize);
-              }}
-              style={{
-                padding: "8px 15px",
-                border: "1px solid black",
-                borderRadius: "5px",
-                backgroundColor:
-                  selectedSize === sz ? "green" : "white",
-                color:
-                  selectedSize === sz ? "white" : "black",
-                opacity: outOfStock ? 0.3 : 1,
-                cursor: outOfStock ? "not-allowed" : "pointer",
               }}
             >
               {sz}
@@ -149,19 +117,14 @@ const handleBuy = () => {
         })}
       </div>
 
-      <h3 style={{ marginTop: "10px" }}>
-        {currentRate ? `₹${currentRate}` : "Select Size"}
-      </h3>
-
-      {/* BUY */}
-      <button className="purchases" onClick={handleBuy}>
-        BUY
-      </button>
-
-      {/* ADD TO CART */}
-      <button className="cart" onClick={handleAddToCart}>
-        ADD TO CART
-      </button>
+      <div className="card-actions-v2">
+        <button className="purchases" onClick={handleBuy}>
+          BUY NOW
+        </button>
+        <button className="cart" onClick={handleAddToCart}>
+          ADD TO CART
+        </button>
+      </div>
     </div>
   );
 }

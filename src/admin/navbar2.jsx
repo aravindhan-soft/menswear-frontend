@@ -6,7 +6,7 @@ function Navbar2(){
     return(
 <div className='ncontainer'>
 <div>
-    <h1 className='login' onClick={()=>navigate("/")}>LOGIN</h1>
+    <h1 className='login' onClick={()=>navigate("/login")}>LOGIN</h1>
 
 </div>
 

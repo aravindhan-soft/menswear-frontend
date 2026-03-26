@@ -100,7 +100,8 @@ function App() {
             <Route path="/forgetpassword2" element={<Forgetpassword2 />} />
 
             {/* ADMIN ROUTES */}
-            <Route path="/admin" element={<Adminhomepage />} />
+            <Route path="/admin" element={<Login />} />
+            <Route path="/admin/home" element={<Adminhomepage />} />
             <Route path="/admin/todayorder" element={<Todayorder />} />
             <Route path="/admin/delivered" element={<Delivered />} />
             <Route path="/admin/earning" element={<Dashboard />} />

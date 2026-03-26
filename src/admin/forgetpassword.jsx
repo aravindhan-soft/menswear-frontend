@@ -60,40 +60,54 @@ const verifyOTP = async () => {
 
 
   return (
-    <div className="input2" style={{ textAlign: "center", marginTop: "100px" }}>
-      <div>
-        <input
-          className="phnum"
-          type="text"
-          placeholder="ENTER YOUR PHONENUMBER"
-          value={phonenumber}
-          onChange={(e) => setphonenumber(e.target.value)}
-        />
-      </div>
+    <div className="login-page">
+      <div className="input2">
+        <div className="login-header">
+          <h2>Reset Password</h2>
+          <p>We will send an OTP to your registered phone number</p>
+        </div>
 
-      <div>
-        <button className="fbutton" onClick={sendOTP}>
+        <div className="input-group">
+          <input
+            className="phnum"
+            type="text"
+            placeholder="Phone Number"
+            value={phonenumber}
+            onChange={(e) => setphonenumber(e.target.value)}
+          />
+        </div>
+
+        <button className="button" onClick={sendOTP}>
           SEND OTP
         </button>
-      </div>
 
-      <div>
-        <input
-          className="otp"
-          type="number"
-          placeholder="ENTER OTP"
-          value={otp}
-          onChange={(e) => setotp(e.target.value)}
-        />
-      </div>
+        <div className="otp-wrapper">
+          <label style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: '600' }}>ENTER OTP</label>
+          <input
+            className="otp"
+            type="text"
+            placeholder="••••••"
+            maxLength="6"
+            value={otp}
+            onChange={(e) => setotp(e.target.value)}
+          />
+        </div>
 
-      <div>
         <button className="fbutton" onClick={verifyOTP}>
-          SUBMIT
+          VERIFY & CONTINUE
         </button>
-      </div>
 
-      {message && <p style={{ color: "green" }}>{message}</p>}
+        {message && (
+          <p style={{ 
+            marginTop: '1.5rem', 
+            color: message.toLowerCase().includes('success') ? '#1a7431' : '#ef4444',
+            fontWeight: '600',
+            fontSize: '0.9rem'
+          }}>
+            {message}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

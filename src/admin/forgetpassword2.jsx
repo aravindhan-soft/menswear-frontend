@@ -23,7 +23,7 @@ function Forgetpassword2() {
 
       alert(res.data.message);
       if (res.data.success) {
-        navigate("/earning"); // redirect after success
+        navigate("/admin/earning"); // redirect after success
       }
     } catch (error) {
       console.error("Frontend Error:", error);
@@ -32,30 +32,35 @@ function Forgetpassword2() {
   };
 
   return (
-    <div className="input2">
-      <div>
-        <input
-          className="phnum"
-          type="password"
-          placeholder="NEW PASSWORD"
-          value={newpassword}
-          onChange={(e) => setnewpassword(e.target.value)}
-        />
-      </div>
+    <div className="login-page">
+      <div className="input2">
+        <div className="login-header">
+          <h2>New Password</h2>
+          <p>Create a strong password for your account</p>
+        </div>
 
-      <div className="fpass">
-        <input
-          className="phnum"
-          type="password"
-          placeholder="CONFIRM PASSWORD"
-          value={confirmpassword}
-          onChange={(e) => setconfirmpassword(e.target.value)}
-        />
-      </div>
+        <div className="input-group">
+          <input
+            className="phnum"
+            type="password"
+            placeholder="New Password"
+            value={newpassword}
+            onChange={(e) => setnewpassword(e.target.value)}
+          />
+        </div>
 
-      <div className="fconfirm">
-        <button className="button" onClick={handleConfirm}>
-          CONFIRM
+        <div className="input-group">
+          <input
+            className="phnum"
+            type="password"
+            placeholder="Confirm New Password"
+            value={confirmpassword}
+            onChange={(e) => setconfirmpassword(e.target.value)}
+          />
+        </div>
+
+        <button className="button" style={{ marginTop: '20px' }} onClick={handleConfirm}>
+          SET NEW PASSWORD
         </button>
       </div>
     </div>

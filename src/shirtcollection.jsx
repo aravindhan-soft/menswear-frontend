@@ -5,6 +5,7 @@ import prshirt from './assets/prshirt.jpg'
 import stshirt from './assets/stshirt.jpg'
 import {useNavigate} from  'react-router-dom'
 import Navbar from './navbar.jsx'
+import Footer from './Footer.jsx';
 
 function Shirtcollection (){
 
@@ -50,16 +51,24 @@ const Shirtlist =slist.map((types) =>
 
 
 )
-return(
+  return (
+    <>
+      <Navbar />
 
+      <div className="collection-page">
+        <div className="collection-header">
+          <span className="collection-subtitle">PREMIUM SELECTION</span>
+          <h1>Our Shirt Collection</h1>
+          <p>Discover our range of meticulously crafted shirts, from timeless solids to contemporary patterns, designed to elevate your everyday style.</p>
+        </div>
 
-<div>
+        <div className="collection-grid">
+          {Shirtlist}
+        </div>
+      </div>
 
-
-<Navbar/>
-{Shirtlist}
-
-</div>
-);
+      <Footer />
+    </>
+  );
 }
 export default Shirtcollection

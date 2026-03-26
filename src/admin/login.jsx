@@ -5,7 +5,7 @@ import Navbar2 from "./navbar2";
 function Login(){
 
 const navigate=useNavigate();
-const [showPassword, setShowPassword] = useState(true);
+const [showPassword, setShowPassword] = useState(false);
 const [phonenumber,setphonenumber]=useState("");
 const [pass_word,setpass_word]=useState("");
 
@@ -27,7 +27,7 @@ const [pass_word,setpass_word]=useState("");
 
       if (response.ok) {
         alert(`Welcome ${data.username}`);
-        navigate("/earning"); // ✅ go to next page
+        navigate("/admin/earning"); // ✅ go to next page
       } else {
         alert(data.message);
       }
@@ -37,34 +37,46 @@ const [pass_word,setpass_word]=useState("");
     }
   };
 
-    return(
-        <div>
-        <Navbar2/>
-            
-<div className="input">
-            <div>
-            <input className="phnum" placeholder=" PHONENUMBER"  onChange={e=>setphonenumber(e.target.value)}></input>
+    return (
+        <div className="login-page">
+            <div className="login-card">
+                <Navbar2 />
+                <div className="login-header">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your details to access your account</p>
+                </div>
+
+                <div className="input-group">
+                    <input 
+                        className="phnum" 
+                        placeholder="Phone Number" 
+                        onChange={e => setphonenumber(e.target.value)} 
+                    />
+                </div>
+
+                <div className="input-group">
+                    <input 
+                        className="pass" 
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password" 
+                        onChange={e => setpass_word(e.target.value)} 
+                    />
+                    <span className="eyeicon" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                </div>
+
+                <div className="login-actions">
+                    <button className="fobutton" onClick={() => navigate("/forgetpassword")}>
+                        Forgot Password?
+                    </button>
+                </div>
+
+                <button className="button" onClick={handleLogin}>
+                    LOG IN
+                </button>
             </div>
-<br></br>
-            <div>
-            <input className="pass"   type={showPassword ? "text" : "password"}
-            placeholder="PASSWORD" onChange={e=>setpass_word(e.target.value)} />
-            <span className="eyeicon" onClick={() => setShowPassword(!showPassword)}>
-        {showPassword ?   <FaEye /> : <FaEyeSlash />}
-        </span>
-            </div>
-
-
-<div>
-            <button className="fobutton" onClick={()=>navigate("/forgetpassword")}>FORGET PASSWORD ?</button></div>
-<div>
-                    <button className="button"onClick={handleLogin}>LOGIN</button></div>
-
-
-</div>
         </div>
-
-
     );
 }
 export default Login;

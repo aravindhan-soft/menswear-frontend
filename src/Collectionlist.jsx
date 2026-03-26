@@ -7,6 +7,8 @@ import {useNavigate} from  'react-router-dom'
 import Navbar from './navbar.jsx'
 
 
+import Footer from './Footer.jsx';
+
 function Collectionlist()
 {
 const navigate =useNavigate();
@@ -62,16 +64,22 @@ const collectionlist =clist.map((types,index) =>
 )
 
 return(
-
-
-
 <>
-<Navbar/>
+  <Navbar/>
+  
+  <div className="collection-page">
+    <div className="collection-header">
+      <h1>Curated Collections</h1>
+      <p>Explore our premium selection of men's wear, crafted for the modern man who values quality and sophistication.</p>
+    </div>
 
-{collectionlist}
+    <div className="collection-grid">
+      {collectionlist}
+    </div>
+  </div>
+
+  <Footer />
 </>
-
-
 );
 }
 

@@ -72,119 +72,103 @@ function Home3({
   };
 
   // 🔥 BUY NOW
-const handleBuy = () => {
-  if (!selectedSize) {
-    alert("Please select size");
-    return;
-  }
+  const handleBuy = () => {
+    if (!selectedSize) {
+      alert("Please select size");
+      return;
+    }
 
-  const productData = {
-    pv_id,
-    sku_id,
-    image,
-    type,
-    bio,
-    sizes: dbSizes,
-    selectedSize,
-    rate: getPrice(selectedSize),
+    const productData = {
+      pv_id,
+      sku_id,
+      image,
+      type,
+      bio,
+      sizes: dbSizes,
+      selectedSize,
+      rate: getPrice(selectedSize),
+    };
+
+    localStorage.setItem("selectedProduct", JSON.stringify(productData));
+
+    navigate("/pay", {
+      state: { product: productData },
+    });
   };
-
-  localStorage.setItem("selectedProduct", JSON.stringify(productData));
-
-  navigate("/pay", {
-    state: { product: productData },
-  });
-};
 
 
 
   return (
-    
-    < >
-      {/* IMAGE */}
-      <div
-        className="bcards"
-        style={{ position: "relative", width: "500px" }}
-      >
-        <img
-          src={image}
-          alt="preview"
-          style={{
-            width: "100%",
-            borderRadius: "50px",
-            border: "1px solid black",
-          }}
-        />
-      </div>
-
-      {/* TYPE */}
-      <div className="type">
-        <h1 >
-  {bio ? bio : "No description available"}
-</h1>
-      </div>
-
-      {/* SIZES */}
-      <div className="buysizes">
-        <h2>SIZES:</h2>
-
-        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-          {ALL_SIZES.map((sz) => {
-            const found = dbSizes.find((s) => s.size === sz);
-            const outOfStock = !found || found.quantity === 0;
-
-            return (
-              <button
-                key={sz}
-                disabled={outOfStock}
-                onClick={() => setSelectedSize(sz)}
-                style={{
-                  padding: "20px 25px",
-                  border: "1px solid black",
-                  borderRadius: "5px",
-                  backgroundColor:
-                    selectedSize === sz ? "green" : "white",
-                  color:
-                    selectedSize === sz ? "white" : "black",
-                  fontSize: "large",
-                  opacity: outOfStock ? 0.3 : 1,
-                  cursor: outOfStock ? "not-allowed" : "pointer",
-                }}
-              >
-                {sz}
-              </button>
-            );
-          })}
+    <>
+      <div className="pdp-container-v2">
+        {/* ✨ DESIGN 2: PLATINUM BOUTIQUE LAYOUT */}
+        <div className="pdp-left-visual">
+          <div className="pdp-image-container">
+            <span className="limited-badge">EXCLUSIVE</span>
+            <img src={image} alt={type} className="pdp-hero-image" />
+            <button className="pdp-wishlist-pills" onClick={handleWishlist}>
+              <FaRegHeart /> FAVORITE
+            </button>
+          </div>
         </div>
 
-        {/* PRICE */}
-        <h2 style={{ marginTop: "15px" }}>
-          ₹ {selectedSize ? getPrice(selectedSize) : 0}
-        </h2>
+        <div className="pdp-right-info">
+          <div className="info-scroll-box">
+             <div className="mobile-only-handle"></div>
 
-        {/* BUY */}
-        <button className="container" onClick={handleBuy}>
-          BUY
-        </button>
+             <div className="pdp-brand-header">
+                <span className="brand-name">KUDANTHAI PREMIUM</span>
+                <div className="pdp-stock-status">IN STOCK</div>
+             </div>
 
-        <br /><br />
+             <h1 className="pdp-main-title">{type}</h1>
+             <p className="pdp-item-bio">{bio || "A pinnacle of craftsmanship, designed for those who command presence and appreciate the finer details of modern tailoring."}</p>
 
-        {/* ADD TO CART */}
-        <button className="container" onClick={handleAddToCart}>
-          ADD TO CART
-        </button>
-        <FiShoppingCart className="bicon" />
+             <div className="pdp-price-row">
+                <span className="price-label">LIST PRICE:</span>
+                <span className="price-value">₹{selectedSize ? getPrice(selectedSize) : "---"}</span>
+             </div>
 
-        <br /><br />
+             {/* SIZE ARCHITECTURE */}
+             <div className="pdp-size-hub">
+               <div className="size-label-row">
+                 <label>AVAILABLE SIZES</label>
+                 <button className="size-chart-link">VIEW CHART</button>
+               </div>
+               <div className="size-buttons-group">
+                 {ALL_SIZES.map((sz) => {
+                   const found = dbSizes.find((s) => s.size === sz);
+                   const outOfStock = !found || found.quantity === 0;
 
-        {/* WISHLIST */}
-        <button className="container" onClick={handleWishlist}>
-          ADD TO WISHLIST
-        </button>
-        <FaRegHeart className="bicon" />
+                   return (
+                     <button
+                       key={sz}
+                       disabled={outOfStock}
+                       className={`size-btn-luxury ${selectedSize === sz ? "selected" : ""} ${outOfStock ? "disabled" : ""}`}
+                       onClick={() => setSelectedSize(sz)}
+                     >
+                       {sz}
+                     </button>
+                   );
+                 })}
+               </div>
+             </div>
+
+             {/* CONVERSION HUB */}
+             <div className="pdp-conversion-v2">
+               <button className="buy-button-luxury" onClick={handleBuy}>
+                 PURCHASE NOW
+               </button>
+               <button className="cart-button-luxury" onClick={handleAddToCart}>
+                 <FiShoppingCart /> ADD TO BAG
+               </button>
+               
+
+             </div>
+          </div>
+        </div>
       </div>
     </>
-
   );
 }
 

@@ -29,7 +29,7 @@ async function onClick(event) {
 
     if (res.data && res.data.message) {
       alert("Signup successful 🎉");
-      navigate("/earning"); // Navigate to login/home
+      navigate("/admin/earning"); 
     } else {
       alert(res.data.error || "Signup failed, please try again!");
     }
@@ -39,60 +39,56 @@ async function onClick(event) {
   }
 }
 
-return (
-    <div>
-        <Navbar2 />
-    
+    return (
+        <div className="login-page">
+            <div className="login-card">
+                <Navbar2 />
+                <div className="login-header">
+                    <h2>Create Account</h2>
+                    <p>Join KUDANTHAI MENS WEAR family</p>
+                </div>
 
-    <div className="input1">
-        <div>
-        <input
-            className="phnum"
-            placeholder="PHONENUMBER"
-            value={phonenumber}
-            onChange={(e) => setPhonenumber(e.target.value)}
-        />
+                <div className="input-group">
+                    <input
+                        className="phnum"
+                        placeholder="Phone Number"
+                        value={phonenumber}
+                        onChange={(e) => setPhonenumber(e.target.value)}
+                    />
+                </div>
+
+                <div className="input-group">
+                    <input
+                        className="pass"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password"
+                        value={pass_word}
+                        onChange={(e) => setpass_word(e.target.value)}
+                    />
+                    <span
+                        className="eyeicon"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                </div>
+
+                <div className="input-group">
+                    <input
+                        className="pass"
+                        type="password"
+                        placeholder="Confirm Password"
+                        value={confirm_pass_word}
+                        onChange={(e) => setConfirm_pass_word(e.target.value)}
+                    />
+                </div>
+
+                <button className="button" onClick={onClick}>
+                    SIGN UP
+                </button>
+            </div>
         </div>
-
-        <br />
-
-        <div className="password-container">
-        <input
-            className="pass"
-            type={showPassword ? "text" : "password"}
-            placeholder="PASSWORD"
-            value={pass_word}
-            onChange={(e) => setpass_word(e.target.value)}
-        />
-        <span
-            className="eyeicon"
-            onClick={() => setShowPassword(!showPassword)}
-        >
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
-        </span>
-        </div>
-
-        <br />
-
-        <div>
-        <input
-            className="pass"
-            type="password"
-            placeholder="CONFIRM PASSWORD"
-            value={confirm_pass_word}
-            onChange={(e) => setConfirm_pass_word(e.target.value)}
-        />
-        </div>
-
-        <br />
-        
-
-        <div>
-        <button className="button" onClick={onClick} >SIGNUP</button>
-        </div>
-    </div>
-    </div>
-);
+    );
 }
 
 export default Signup;

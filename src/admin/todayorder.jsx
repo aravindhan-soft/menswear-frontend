@@ -18,28 +18,44 @@ function Todayorder() {
   }, []);
 
   return (
-    <div>
+    <div className="admin-stock-container">
       <Adminhomepage />
 
-      {orders.length === 0 && (
-        <h2 style={{ textAlign: "center" }}>No Orders Today</h2>
-      )}
+      <h2 className="admin-title">TODAY'S ORDERS</h2>
 
-      {orders.map(order => (
-        <Home6
-          key={order.or_id}
-          image={order.image}
-          orderid={order.or_id}
-          size={order.size}
-          rate={order.perprize}
-          name={`${order.firstname} ${order.lastname}`}
-          address={`${order.streetname}, ${order.city}, ${order.state} - ${order.pincode}`}
-          phonenum={order.phonenumber}
-          orderdate={order.ordertime}
-        />
-      ))}
+      {orders.length === 0 ? (
+        <div style={{ 
+          textAlign: "center", 
+          padding: "50px", 
+          background: "#ffffff", 
+          borderRadius: "16px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+          color: "#94a3b8"
+        }}>
+          <div style={{ fontSize: "2rem", marginBottom: "10px" }}>📦</div>
+          <h3>No Orders Received Today</h3>
+          <p>Check back later or view past orders.</p>
+        </div>
+      ) : (
+        <div style={{ display: "grid", gap: "20px" }}>
+          {orders.map(order => (
+            <Home6
+              key={order.or_id}
+              image={order.image}
+              orderid={order.or_id}
+              size={order.size}
+              rate={order.perprize}
+              name={`${order.firstname} ${order.lastname}`}
+              address={`${order.streetname}, ${order.city}, ${order.state} - ${order.pincode}`}
+              phonenum={order.phonenumber}
+              orderdate={order.ordertime}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
+
 
 export default Todayorder;

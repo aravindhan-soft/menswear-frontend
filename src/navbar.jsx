@@ -34,19 +34,10 @@ function Navbar() {
     const text = value.toLowerCase();
 
     return products.filter(item =>
-      // ✅ PRODUCT NAME (shirt / pant / tshirt / inner)
       (item.product || "").toLowerCase().includes(text) ||
-
-      // ✅ CATEGORY (shirt / pant)
       (item.category || "").toLowerCase().includes(text) ||
-
-      // ✅ VARIETY
       (item.variety || "").toLowerCase().includes(text) ||
-
-      // ✅ COLOR
       (item.color || "").toLowerCase().includes(text) ||
-
-      // ✅ SIZE
       item.sizes?.some(s =>
         (s.size || "").toLowerCase().includes(text)
       )
@@ -67,51 +58,56 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar">
-      <div className="navlogo">KUDANTHAI MENS WEAR</div>
-
-      <div className="navmenu">
-
-        {/* 🔍 SEARCH BAR */}
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search ..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <GoSearch
-            className="search-icon"
-            onClick={handleSearchClick}
-            style={{ cursor: "pointer" }}
-          />
+    <div className="navbar zen-nav">
+      <div className="nav-container-zen">
+        {/* 🏢 BRAND IDENTITY (ELITE) */}
+        <div className="navlogo-zen" onClick={() => navigate("/")}>
+          KUDANTHAI <span className="logo-sub">MENS WEAR</span>
         </div>
 
-        {/* 👤 PROFILE */}
-        <div className="icons" >
-          <IoPersonOutline />
+
+
+        {/* 🛠️ UTILITIES & ACTIONS */}
+        <div className="zen-utility">
+          <div className="zen-search">
+            <input
+              type="text"
+              placeholder="Searching..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearchClick()}
+            />
+            <GoSearch className="zen-search-icon" onClick={handleSearchClick} />
+          </div>
+
+          <div className="zen-actions">
+            <div className="zen-icon" title="Account">
+              <IoPersonOutline />
+            </div>
+
+            <div
+              className="zen-icon"
+              onClick={() => navigate("/likepage")}
+              title="Wishlist"
+            >
+              <div className="icon-wrapper">
+                {wishlist.length > 0 ? <FaHeart color="#ef4444" /> : <FaRegHeart />}
+                {wishlist.length > 0 && <span className="zen-badge">{wishlist.length}</span>}
+              </div>
+            </div>
+
+            <div
+              className="zen-icon"
+              onClick={() => navigate("/cartpage")}
+              title="Cart"
+            >
+              <div className="icon-wrapper">
+                <FiShoppingCart />
+                {cart?.length > 0 && <span className="zen-badge green">{cart.length}</span>}
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* 🛒 CART */}
-        <div
-          className="icons"
-          onClick={() => navigate("/cartpage")}
-          style={{ position: "relative" }}
-        >
-          <FiShoppingCart />
-
-        </div>
-
-        {/* ❤️ WISHLIST */}
-        <div
-          className="icons"
-          onClick={() => navigate("/likepage")}
-          style={{ position: "relative" }}
-        >
-          {wishlist.length > 0 ? <FaHeart color="red" /> : <FaRegHeart />}
-
-        </div>
-
       </div>
     </div>
   );

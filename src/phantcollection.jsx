@@ -5,6 +5,7 @@ import cphant from './assets/cphant.webp'
 import tphant from './assets/tphant.webp'
 import {useNavigate} from  'react-router-dom'
 import Navbar from './navbar.jsx'
+import Footer from './Footer.jsx';
 
 function Phantcollection (){
 
@@ -49,16 +50,24 @@ const phantlist =phlist.map((types) =>
 
 
 )
-return(
+  return (
+    <>
+      <Navbar />
 
+      <div className="collection-page">
+        <div className="collection-header">
+          <span className="collection-subtitle">PREMIUM SELECTION</span>
+          <h1>Our Pants Collection</h1>
+          <p>Explore our premium collection of well-tailored pants, from sharp formals to relaxed cargos, crafted for style and enduring comfort.</p>
+        </div>
 
-<div>
+        <div className="collection-grid">
+          {phantlist}
+        </div>
+      </div>
 
-<Navbar/>
-
-{phantlist}
-
-</div>
-    );
+      <Footer />
+    </>
+  );
 }
 export default Phantcollection;
