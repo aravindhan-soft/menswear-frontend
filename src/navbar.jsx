@@ -15,48 +15,6 @@ function Navbar() {
   const { wishlist } = useWishlist();
   const { cart } = useCart();
 
-  const [search, setSearch] = useState(
-    location.state?.searchText || ""
-  );
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/getAvailableStock")
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) setProducts(data.data);
-      });
-  }, []);
-
-  // 🔍 FIXED FILTER LOGIC
-  const filterProducts = (value) => {
-    const text = value.toLowerCase();
-
-    return products.filter(item =>
-      (item.product || "").toLowerCase().includes(text) ||
-      (item.category || "").toLowerCase().includes(text) ||
-      (item.variety || "").toLowerCase().includes(text) ||
-      (item.color || "").toLowerCase().includes(text) ||
-      item.sizes?.some(s =>
-        (s.size || "").toLowerCase().includes(text)
-      )
-    );
-  };
-
-  const handleSearchClick = () => {
-    if (!search.trim()) return;
-
-    const filtered = filterProducts(search);
-
-    navigate("/search", {
-      state: {
-        results: filtered,
-        searchText: search,
-      },
-    });
-  };
-
   return (
     <div className="navbar zen-nav">
       <div className="nav-container-zen">
@@ -69,19 +27,9 @@ function Navbar() {
 
         {/* 🛠️ UTILITIES & ACTIONS */}
         <div className="zen-utility">
-          <div className="zen-search">
-            <input
-              type="text"
-              placeholder="Searching..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSearchClick()}
-            />
-            <GoSearch className="zen-search-icon" onClick={handleSearchClick} />
-          </div>
 
           <div className="zen-actions">
-            <div className="zen-icon" title="Account">
+            <div className="zen-icon" title="Account" onClick={() => navigate("/orders")}>
               <IoPersonOutline />
             </div>
 

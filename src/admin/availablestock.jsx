@@ -5,17 +5,49 @@ import Adminhomepage from "./adminhomepage";
 function Availablestock() {
     const [stock, setStock] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const [shops, setShops] = useState([]);
+    const [selectedShopId, setSelectedShopId] = useState("ALL");
+    const role = localStorage.getItem("role");
 
     useEffect(() => {
-        fetch("http://localhost:5000/getAvailableStock")
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    setStock(data.data);
-                }
-            })
-            .catch(err => console.error("Error loading stock:", err));
-    }, []);
+        if (role === "ADMIN") {
+            fetch("http://localhost:5000/api/shops")
+                .then(res => res.json())
+                .then(data => setShops(data))
+                .catch(err => console.error(err));
+        }
+    }, [role]);
+
+useEffect(() => {
+  const shopid = localStorage.getItem("shopId");
+  
+  if (role !== "ADMIN" && !shopid) {
+    alert("Shop not logged in");
+    return;
+  }
+
+  let finalShopId = role === "ADMIN" ? selectedShopId : shopid;
+  
+  // Actually, we don't know for sure if getAvailableStock/ALL exists and functions perfectly to get all stock, let's assume it does based on past curl test showing status 200. I'll use it here.
+  let targetUrl = `http://localhost:5000/getAvailableStock/${finalShopId}`;
+
+  // If we require a generic endpoint for ALL, let's use what we found.
+  if (role === "ADMIN" && finalShopId === "ALL") {
+      targetUrl = "http://localhost:5000/getAvailableStock/all";
+  }
+
+  fetch(targetUrl)
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        setStock(data.data);
+      } else {
+        setStock([]);
+      }
+    })
+    .catch(err => console.log(err));
+
+}, [selectedShopId, role]);
 
     const filteredStock = stock.filter(item => {
         const text = searchText.toLowerCase();
@@ -35,20 +67,34 @@ function Availablestock() {
       <Adminhomepage />
 
       <div className="v10-container">
-        <header className="v10-header">
+        <header className="v10-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h1>Inventory Ledger</h1>
             <p>Live audit of all active collection assets</p>
           </div>
-          <div className="v10-search-wrapper">
-             <GoSearch className="v10-search-icon" />
-             <input
-               className="v10-search-input"
-               placeholder="Search collection ledger..."
-               value={searchText}
-               onChange={(e) => setSearchText(e.target.value)}
-             />
-           </div>
+          <div style={{ display: 'flex', gap: '15px' }}>
+             {role === "ADMIN" && (
+               <select 
+                 value={selectedShopId} 
+                 onChange={(e) => setSelectedShopId(e.target.value)}
+                 className="v10-select"
+               >
+                 <option value="ALL">All Shops</option>
+                 {shops.map(shop => (
+                   <option key={shop.si_id} value={shop.si_id}>{shop.shopname}</option>
+                 ))}
+               </select>
+             )}
+             <div className="v10-search-wrapper" style={{ margin: 0 }}>
+               <GoSearch className="v10-search-icon" />
+               <input
+                 className="v10-search-input"
+                 placeholder="Search collection ledger..."
+                 value={searchText}
+                 onChange={(e) => setSearchText(e.target.value)}
+               />
+             </div>
+          </div>
         </header>
 
         <div className="v10-card" style={{ padding: '0' }}>

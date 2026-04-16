@@ -19,12 +19,15 @@ function Likepage() {
 
     addToCart({
       bio: item.bio,
+      pv_id: item.pv_id,     
+      sku_id: item.sku_id, 
       image: item.image,
       type: item.type,
       rate: item.rate,
       sizes: item.sizes,             // ✅ FULL SIZES
       selectedSize: item.selectedSize, // ✅ SELECTED SIZE
       qty: 1,
+      shopId: item.shopId
     });
 
     removeFromWishlist(item.image);

@@ -10,66 +10,66 @@ function Uploadstock() {
   const [color, setColor] = useState("");
   const [newColor, setNewColor] = useState("");
 
-  const [size, setSize] = useState("");
+  const [sizeList, setSizeList] = useState([]);
+  const [currentSize, setCurrentSize] = useState("");
   const [newSize, setNewSize] = useState("");
 
-  const [quantity, setQuantity] = useState("");
-  const [prize, setprize] = useState("");
+  const [currentQuantity, setCurrentQuantity] = useState("");
+  const [currentPrize, setCurrentPrize] = useState("");
 
   const [bio, setBio] = useState("");
 
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState("");
   const handleSubmit = async () => {
+
     if (!product) return alert("Please select product!");
     if (!subType) return alert("Please select category!");
 
     const finalVariety = variety;
     const finalColor = color === "New" ? newColor : color;
-    const finalSize = size === "New" ? newSize : size;
 
-    // Variety REQUIRED only for Shirt/TShirt
-    if ((product === "Shirt" || product === "TShirt") && !finalVariety) {
+    if ((product === "Shirt" || product === "TShirt") && !finalVariety)
       return alert("Please select variety!");
-    }
 
     if (!finalColor) return alert("Please enter color!");
-    if (!finalSize) return alert("Please enter size!");
+    if (sizeList.length === 0) return alert("Please add at least one size variant with quantity and price!");
     if (!image) return alert("Please upload an image!");
 
-    const formData = new FormData();
-    formData.append("product", product);
-    formData.append("category", subType);
-
-    // Send variety only when required
-    if (product === "Shirt" || product === "TShirt") {
-      formData.append("variety", finalVariety);
-    } else {
-      formData.append("variety", "");
-    }
-
-    formData.append("color", finalColor);
-    formData.append("size", finalSize);
-    formData.append("prize", prize);
-    formData.append("quantity", quantity);
-    formData.append("bio", bio);
-    formData.append("image", image);
+    const shopid = localStorage.getItem("shopId");
 
     try {
-      const res = await fetch("http://localhost:5000/api/upStock", {
-        method: "POST",
-        body: formData
-      });
+      for (const item of sizeList) {
+        const { size: finalSize, quantity, prize } = item;
+        const formData = new FormData();
 
-      const data = await res.json();
-      if (data.success) {
-        alert("Stock uploaded successfully!");
-      } else {
-        alert("Upload failed: " + (data.message || "Unknown error"));
+        formData.append("shopid", shopid);
+        formData.append("product", product);
+        formData.append("category", subType);
+        formData.append("variety", finalVariety || "");
+        formData.append("color", finalColor);
+        formData.append("size", finalSize);
+        formData.append("prize", prize);
+        formData.append("quantity", quantity);
+        formData.append("bio", bio);
+        formData.append("image", image);
+
+        const res = await fetch("http://localhost:5000/api/upStock", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        if (!data.success) {
+          console.warn("Issue uploading size variant:", finalSize, data.message);
+        }
       }
+
+      alert("Stock uploaded successfully for all selected sizes!");
+      setSizeList([]);
     } catch (err) {
-      console.error("Upload error:", err);
-      alert("Error uploading!");
+      console.log(err);
+      alert("Upload failed!");
     }
   };
 
@@ -144,7 +144,7 @@ function Uploadstock() {
   };
 
   // Add New Size
-  const handleAddNewSize = () => {
+  const handleAddNewSizeOption = () => {
     if (!newSize.trim()) {
       alert("Enter valid size!");
       return;
@@ -155,9 +155,36 @@ function Uploadstock() {
     updated.splice(index, 0, newSize.trim());
 
     setSizeOptions(updated);
-    setSize(newSize.trim());
+    setCurrentSize(newSize.trim());
     setNewSize("");
-    alert(`📏 '${newSize}' size added!`);
+    alert(`📏 '${newSize}' size option added!`);
+  };
+
+  const handleAddSizeVariant = () => {
+    const finalSize = currentSize === "New" ? newSize : currentSize;
+    if (!finalSize) return alert("Select or enter a size!");
+    if (!currentQuantity || currentQuantity <= 0) return alert("Enter valid quantity!");
+    if (!currentPrize || currentPrize <= 0) return alert("Enter valid price!");
+
+    // Check if size already exists in the list
+    if (sizeList.some((item) => item.size === finalSize)) {
+      return alert("This size is already added!");
+    }
+
+    setSizeList([...sizeList, {
+      size: finalSize,
+      quantity: currentQuantity,
+      prize: currentPrize
+    }]);
+
+    setCurrentSize("");
+    setNewSize("");
+    setCurrentQuantity("");
+    setCurrentPrize("");
+  };
+
+  const handleRemoveSizeVariant = (indexToRemove) => {
+    setSizeList(sizeList.filter((_, index) => index !== indexToRemove));
   };
 
   // Image Upload
@@ -201,7 +228,8 @@ function Uploadstock() {
                     setSubType("");
                     setVariety("");
                     setColor("");
-                    setSize("");
+                    setCurrentSize("");
+                    setSizeList([]);
                   }}
                 >
                   <option value="">-- Select Category --</option>
@@ -294,63 +322,83 @@ function Uploadstock() {
               </div>
             )}
 
-            <div className="v10-row">
-              {product && subType && (
-                <div className="v10-input-group">
-                  <label className="v10-label">Size Metric</label>
-                  <select
-                    className="v10-input"
-                    value={size}
-                    onChange={(e) => setSize(e.target.value)}
-                  >
-                    <option value="">-- Choose Metric --</option>
-                    {sizeOptions.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
-                </div>
-              )}
-              {size === "New" && (
-                <div className="v10-input-group">
-                  <label className="v10-label">Custom Sizing Protocol</label>
-                  <div style={{ display: 'flex', gap: '20px' }}>
+            <div className="v10-section-heading">03 / Size, Valuation & Inventory (Multiple Variants)</div>
+            {product && subType && (
+              <div style={{ background: '#1e293b', padding: '20px', borderRadius: '8px', marginBottom: '20px' }}>
+                <div className="v10-row" style={{ alignItems: 'flex-end', marginBottom: '15px' }}>
+                  <div className="v10-input-group" style={{ marginBottom: 0 }}>
+                    <label className="v10-label">Size Metric</label>
+                    <select
+                      className="v10-input"
+                      value={currentSize}
+                      onChange={(e) => setCurrentSize(e.target.value)}
+                    >
+                      <option value="">-- Choose Metric --</option>
+                      {sizeOptions.map((s) => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="v10-input-group" style={{ marginBottom: 0 }}>
+                    <label className="v10-label">Market Valuation (₹)</label>
                     <input
                       className="v10-input"
-                      value={newSize}
-                      onChange={(e) => setNewSize(e.target.value)}
-                      placeholder="e.g. Tailored Fit"
+                      type="number"
+                      value={currentPrize}
+                      onChange={(e) => setCurrentPrize(e.target.value)}
+                      placeholder="0.00"
                     />
-                    <button className="btn-add" style={{ margin: 0, padding: '0 30px' }} onClick={handleAddNewSize}>Add</button>
                   </div>
+
+                  <div className="v10-input-group" style={{ marginBottom: 0 }}>
+                    <label className="v10-label">Inventory Volume</label>
+                    <input
+                      className="v10-input"
+                      type="number"
+                      value={currentQuantity}
+                      onChange={(e) => setCurrentQuantity(e.target.value)}
+                      placeholder="Count Units"
+                    />
+                  </div>
+
+                  <button className="btn-add" style={{ margin: 0, padding: '0 20px', height: '48px', backgroundColor: '#3b82f6', color: 'white', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }} onClick={handleAddSizeVariant}>Add Size</button>
                 </div>
-              )}
-            </div>
 
-            <div className="v10-section-heading">03 / Valuation & Narrative</div>
+                {currentSize === "New" && (
+                  <div className="v10-input-group" style={{ marginTop: '15px' }}>
+                    <label className="v10-label">Custom Sizing Protocol</label>
+                    <div style={{ display: 'flex', gap: '20px' }}>
+                      <input
+                        className="v10-input"
+                        value={newSize}
+                        onChange={(e) => setNewSize(e.target.value)}
+                        placeholder="e.g. Tailored Fit"
+                      />
+                      <button className="btn-add" style={{ margin: 0, padding: '0 30px' }} onClick={handleAddNewSizeOption}>Add Opt</button>
+                    </div>
+                  </div>
+                )}
 
-            <div className="v10-row">
-              <div className="v10-input-group">
-                <label className="v10-label">Market Valuation (₹)</label>
-                <input
-                  className="v10-input"
-                  type="number"
-                  value={prize}
-                  onChange={(e) => setprize(e.target.value)}
-                  placeholder="0.00"
-                />
+                {sizeList.length > 0 && (
+                  <div style={{ marginTop: '20px' }}>
+                    <label className="v10-label">Added Size Variants</label>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                      {sizeList.map((item, index) => (
+                        <div key={index} style={{ background: '#334155', padding: '10px', borderRadius: '6px', display: 'flex', alignItems: 'center', gap: '15px', color: '#fff' }}>
+                          <span style={{ fontWeight: 'bold' }}>{item.size}</span>
+                          <span>₹{item.prize}</span>
+                          <span>Qty: {item.quantity}</span>
+                          <button onClick={() => handleRemoveSizeVariant(index)} style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: '1.2rem', fontWeight: 'bold', lineHeight: 1 }}>×</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
+            )}
 
-              <div className="v10-input-group">
-                <label className="v10-label">Inventory Volume</label>
-                <input
-                  className="v10-input"
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  placeholder="Count Units"
-                />
-              </div>
-            </div>
+            <div className="v10-section-heading">04 / Narrative</div>
 
             <div className="v10-input-group">
               <label className="v10-label">Product Narrative</label>
@@ -387,7 +435,7 @@ function Uploadstock() {
           <aside>
             <div className="v10-preview-card">
               <div className="v10-section-heading" style={{ color: '#94a3b8', marginBottom: '20px' }}>Ledger Preview</div>
-              
+
               <div className="v10-preview-img-container">
                 {imagePreview ? (
                   <img src={imagePreview} alt="Preview" className="v10-preview-img" />
@@ -397,13 +445,13 @@ function Uploadstock() {
               </div>
 
               <div className="v10-preview-title">{subType && subType !== "New" ? subType : (newType || "Untitled Selection")}</div>
-              
+
               <div className="v10-preview-meta">
                 <span>{product || 'General'}</span>
                 <span>•</span>
                 <span>{color || 'Natural'}</span>
                 <span>•</span>
-                <span>{size || 'Standard'}</span>
+                <span>{sizeList.length > 0 ? `${sizeList.length} Sizes Added` : 'No Sizes'}</span>
               </div>
 
               <div style={{ opacity: 0.7, fontSize: '0.85rem', marginBottom: '30px', fontFamily: 'Inter, sans-serif', lineHeight: '1.6' }}>
@@ -413,11 +461,15 @@ function Uploadstock() {
               <div style={{ borderTop: '1px solid #334155', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>VALUATION</div>
-                  <div className="v10-preview-price">₹{prize || '0'}</div>
+                  <div className="v10-preview-price">
+                    ₹{sizeList.length > 0 ? Math.min(...sizeList.map(s => Number(s.prize))) + (sizeList.length > 1 ? ` - ₹${Math.max(...sizeList.map(s => Number(s.prize)))}` : '') : '0'}
+                  </div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>ON HAND</div>
-                  <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>{quantity || '0'}</div>
+                  <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>TOTAL ON HAND</div>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>
+                    {sizeList.reduce((acc, curr) => acc + parseInt(curr.quantity || 0), 0)}
+                  </div>
                 </div>
               </div>
 

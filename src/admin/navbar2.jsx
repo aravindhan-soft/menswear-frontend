@@ -11,7 +11,7 @@ function Navbar2(){
 </div>
 
 <div>
-<h1 className='signup'onClick={()=>navigate("/signup")}>SIGNUP</h1>
+<h1 className='signup' onClick={()=>navigate("/shopregister")}>REGISTER SHOP</h1>
 </div>
 
 </div>

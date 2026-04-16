@@ -1,43 +1,50 @@
 import { useEffect, useState } from "react";
 import Home2 from "./home2.jsx";
 import Navbar from "./navbar.jsx";
+import Footer from "./Footer.jsx";
+import { useParams } from "react-router-dom";
 
 function Stripescollection() {
   const [products, setProducts] = useState([]);
+  const { shopId } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/getproducts?category=Stripes")
+    fetch(`http://localhost:5000/api/getproducts?category=Stripes&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
-        if (res.success) {
-          setProducts(res.data);   // grouped results (pv_id-based)
-        }
+        if (res.success) setProducts(res.data);
       })
-      .catch((err) =>
-        console.error("Error fetching stripes stock:", err)
-      );
-  }, []);
+      .catch((err) => console.error("Error fetching stripes stock:", err));
+  }, [shopId]);
 
   return (
-    <div>
+    <>
       <Navbar />
-
-      <div className="product-grid">
-        {products.map((product, index) => (
-          <Home2
-          key={product.pv_id}          // ✅ unique key
-    pv_id={product.pv_id}        // ✅ send to Home2
-    sku_id={product.sku_id}      // ✅ send to Home2
-    type={product.product}
-    image={product.image}
-    bio={product.bio}  
-    sizes={product.sizes}
-    variety={product.variety}
-    color={product.color}
-          />
-        ))}
+      <div className="collection-page">
+        <div className="collection-header">
+          <span className="collection-subtitle">ELITE COLLECTION</span>
+          <h1>Stripes Premium Shirts</h1>
+          <p>Timeless striped patterns that bring sophistication and style together.</p>
+        </div>
+        <div className="collection-grid">
+          {products.map((product) => (
+            <Home2
+              key={product.pv_id}
+              pv_id={product.pv_id}
+              sku_id={product.sku_id}
+              type={product.product}
+              image={product.image}
+              bio={product.bio}
+              sizes={product.sizes}
+              variety={product.variety}
+              color={product.color}
+               shopId={shopId}  
+            />
+          ))}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

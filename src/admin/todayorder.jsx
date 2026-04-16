@@ -4,24 +4,62 @@ import Adminhomepage from "./adminhomepage";
 
 function Todayorder() {
   const [orders, setOrders] = useState([]);
+  const [shops, setShops] = useState([]);
+  const [selectedShopId, setSelectedShopId] = useState("ALL");
+  const role = localStorage.getItem("role");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/order/today") // ✅ CORRECT NOW
-      .then(res => res.json())
-      .then(data => {
-        console.log("API:", data);
-        if (data.success) {
-          setOrders(data.orders);
-        }
-      })
-      .catch(err => console.log("Error:", err));
-  }, []);
+    if (role === "ADMIN") {
+      fetch("http://localhost:5000/api/shops")
+        .then(res => res.json())
+        .then(data => setShops(data))
+        .catch(err => console.error(err));
+    }
+  }, [role]);
+
+useEffect(() => {
+  const shopId = localStorage.getItem("shopId");
+
+  let url = "";
+
+  if (role === "ADMIN") {
+    if (selectedShopId === "ALL") {
+      url = "http://localhost:5000/api/order/today-all";
+    } else {
+      url = `http://localhost:5000/api/order/today/${selectedShopId}`;
+    }
+  } else {
+    url = `http://localhost:5000/api/order/today/${shopId}`; // 🔥 SHOP DATA
+  }
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) setOrders(data.orders);
+    });
+}, [selectedShopId, role]);
 
   return (
     <div className="admin-stock-container">
       <Adminhomepage />
 
-      <h2 className="admin-title">TODAY'S ORDERS</h2>
+      <div style={{ display: 'flex', position: 'relative', alignItems: 'center', justifyContent: 'center', marginBottom: '30px', marginTop: '10px' }}>
+        <h2 className="admin-title" style={{ margin: 0 }}>TODAY'S ORDERS</h2>
+        {role === "ADMIN" && (
+          <div style={{ position: 'absolute', right: 0 }}>
+            <select 
+              value={selectedShopId} 
+              onChange={(e) => setSelectedShopId(e.target.value)}
+              className="v10-select"
+            >
+              <option value="ALL">All Shops</option>
+              {shops.map(shop => (
+                <option key={shop.si_id} value={shop.si_id}>{shop.shopname}</option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
 
       {orders.length === 0 ? (
         <div style={{ 

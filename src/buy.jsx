@@ -31,6 +31,7 @@ function Buy() {
         bio={product.bio}
         sizes={product.sizes}
         selectedSize={product.selectedSize}
+        shopId={product.shopId} 
       />
     </>
   );

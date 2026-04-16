@@ -24,20 +24,58 @@ function Dashboard() {
     chartData: []
   });
 
+  const [shops, setShops] = useState([]);
+  const [selectedShopId, setSelectedShopId] = useState("ALL");
+  const role = localStorage.getItem("role");
+
   useEffect(() => {
-    axios.get("http://localhost:5000/dashboard/stats")
-      .then(res => {
-        setStats(res.data);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }, []);
+    if (role === "ADMIN") {
+      axios.get("http://localhost:5000/api/shops")
+        .then(res => setShops(res.data))
+        .catch(err => console.error(err));
+    }
+  }, [role]);
+
+  useEffect(() => {
+    const shopId = localStorage.getItem("shopId");
+
+    let url = "";
+
+    if (role === "ADMIN") {
+      if (selectedShopId === "ALL") {
+        url = "http://localhost:5000/dashboard/stats-all";
+      } else {
+        url = `http://localhost:5000/dashboard/stats/${selectedShopId}`;
+      }
+    } else {
+      url = `http://localhost:5000/dashboard/stats/${shopId}`;
+    }
+
+    axios.get(url)
+      .then(res => setStats(res.data))
+      .catch(err => console.error(err));
+  }, [selectedShopId, role]);
 
   return (
     <div className="dashboard">
       <Adminhomepage />
-      <h2 className="dtitle">Dashboard</h2>
+      <div style={{ display: 'flex', position: 'relative', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', marginTop: '10px' }}>
+        <h2 className="dtitle" style={{ margin: 0 }}>Dashboard</h2>
+        {role === "ADMIN" && (
+          <div style={{ position: 'absolute', right: 0 }}>
+            <select
+              value={selectedShopId}
+              onChange={(e) => setSelectedShopId(e.target.value)}
+              className="v10-select"
+            >
+              <option value="ALL">All Shops</option>
+              {shops.map(shop => (
+                <option key={shop.si_id} value={shop.si_id}>{shop.shopname}</option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
 
       {/* ===== CARDS ===== */}
       <div className="dcards">
@@ -67,7 +105,7 @@ function Dashboard() {
       {/* ===== CHARTS SECTION ===== */}
       <div className="dcharts">
 
-        {/* Monthly Earnings Line Chart */}
+        {/* Monthly Earni ngs Line Chart */}
         <div className="dchart">
           <h3>MONTHLY EARNINGS</h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -77,11 +115,11 @@ function Dashboard() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line 
-                type="monotone" 
-                dataKey="earnings" 
-                stroke="#008000" 
-                strokeWidth={3} 
+              <Line
+                type="monotone"
+                dataKey="earnings"
+                stroke="#008000"
+                strokeWidth={3}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -97,9 +135,9 @@ function Dashboard() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar 
-                dataKey="orders" 
-                fill="#008000" 
+              <Bar
+                dataKey="orders"
+                fill="#008000"
               />
             </BarChart>
           </ResponsiveContainer>

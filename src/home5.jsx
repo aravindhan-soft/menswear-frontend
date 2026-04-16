@@ -10,19 +10,22 @@ function Home5({ item, onDelete }) {
       return;
     }
 
+    const productData = {
+      pv_id: item.pv_id,
+      image: item.image,
+      type: item.type,
+      bio: item.bio,
+      sizes: item.sizes,
+      selectedSize: item.selectedSize,
+      rate: item.rate,
+      qty: item.qty,
+      shopId: item.shopId,
+    };
+
+    localStorage.setItem("selectedProduct", JSON.stringify(productData));
+
     navigate("/buy", {
-      state: {
-        product: {                // ✅ wrap inside product
-          pv_id: item.pv_id,
-          image: item.image,
-          type: item.type,
-          bio: item.bio,          // ✅ ADD BIO
-          sizes: item.sizes,
-          selectedSize: item.selectedSize,
-          rate: item.rate,
-          qty: item.qty,
-        },
-      },
+      state: { product: productData },
     });
   };
 
@@ -34,7 +37,7 @@ function Home5({ item, onDelete }) {
         alt="preview"
       />
 
-      {/* ❌ TYPE REMOVED */}
+    
 
       {/* ✅ BIO ADDED */}
       <p className="cartpagetype">{item.bio}</p>

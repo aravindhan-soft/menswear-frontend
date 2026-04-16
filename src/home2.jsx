@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useWishlist } from "./context/WishlistContext";
 import { useCart } from "./context/CartContext";
 
-function Home2({ image, type, sizes, pv_id, sku_id, bio }) {
+function Home2({ image, type, sizes, pv_id, sku_id, bio, shopId }) {
+
+   const finalShopId = shopId || localStorage.getItem("selectedShopId");
+
   const [selectedSize, setSelectedSize] = useState(null);
   const [currentRate, setCurrentRate] = useState(null);
 
@@ -26,6 +29,8 @@ function Home2({ image, type, sizes, pv_id, sku_id, bio }) {
     }
 
     addToCart({
+      pv_id,          
+      sku_id, 
       image,
       type,
       bio,
@@ -33,32 +38,40 @@ function Home2({ image, type, sizes, pv_id, sku_id, bio }) {
       selectedSize,
       rate: currentRate,
       qty: 1,
+      shopId: finalShopId   // ✅ FIXED
     });
 
     navigate("/cartpage");
   };
 
   // 🛍 BUY NOW
-  const handleBuy = () => {
-    if (!selectedSize || !currentRate) {
-      alert("Please select size");
-      return;
-    }
+const handleBuy = () => {
+  if (!selectedSize || !currentRate) {
+    alert("Please select size");
+    return;
+  }
 
-    const productData = {
-      pv_id,
-      sku_id,
-      image,
-      type,
-      bio,
-      sizes: safeSizes,
-      selectedSize,
-      rate: currentRate,
-    };
+  if (!finalShopId) {
+    alert("Shop ID missing ❌");
+    return;
+  }
 
-    localStorage.setItem("selectedProduct", JSON.stringify(productData));
-    navigate("/buy", { state: { product: productData } });
+  const productData = {
+    pv_id,
+    sku_id,
+    image,
+    type,
+    bio,
+    sizes: safeSizes,
+    selectedSize,
+    rate: currentRate,
+    shopId: finalShopId   // ✅ FIXED
   };
+
+  localStorage.setItem("selectedProduct", JSON.stringify(productData));
+
+  navigate("/buy", { state: { product: productData } });
+};
 
   // ❤️ LIKE BUTTON
   const handleLike = () => {
@@ -68,12 +81,15 @@ function Home2({ image, type, sizes, pv_id, sku_id, bio }) {
     }
 
     toggleLike({
+      pv_id,
+      sku_id,
       image,
       type,
       bio,
       sizes: safeSizes,
       selectedSize,
       rate: currentRate,
+      shopId: finalShopId   // ✅ FIXED
     });
   };
 
@@ -90,7 +106,7 @@ function Home2({ image, type, sizes, pv_id, sku_id, bio }) {
         <p className="card-bio-v2">
           {bio ? bio : "Premium Mens Wear"}
         </p>
-        
+
         <h3 className="card-rate-v2">
           {currentRate ? `₹${currentRate}` : "---"}
         </h3>

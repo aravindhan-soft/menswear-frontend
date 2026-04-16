@@ -9,33 +9,49 @@ const [showPassword, setShowPassword] = useState(false);
 const [phonenumber,setphonenumber]=useState("");
 const [pass_word,setpass_word]=useState("");
 
+const handleLogin = async () => {
 
-  const handleLogin = async () => {
-    if (!phonenumber || !pass_word) {
-      alert("Please enter both phone number and password");
-      return;
+  if (!phonenumber || !pass_word) {
+    alert("Enter phone number and password");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        phonenumber: phonenumber,
+        pass_word: pass_word
+      })
+    });
+
+    const data = await response.json();
+
+if (data.success) {
+
+  localStorage.setItem("role", data.role);
+
+  if (data.role === "SHOP") {
+    localStorage.setItem("shopId", data.shopid);
+    localStorage.setItem("shopname", data.shopname);
+  }
+
+  alert("Login successful");
+
+  navigate("/admin/earning");
+}
+    else {
+      alert(data.message);
     }
 
-    try {
-      const response = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phonenumber, pass_word }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert(`Welcome ${data.username}`);
-        navigate("/admin/earning"); // ✅ go to next page
-      } else {
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Frontend Error:", error);
-      alert("Server error — check backend connection");
-    }
-  };
+  } catch (error) {
+    console.log(error);
+    alert("Server error");
+  }
+};
 
     return (
         <div className="login-page">
@@ -66,10 +82,11 @@ const [pass_word,setpass_word]=useState("");
                     </span>
                 </div>
 
-                <div className="login-actions">
+                <div className="login-actions" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
                     <button className="fobutton" onClick={() => navigate("/forgetpassword")}>
                         Forgot Password?
                     </button>
+
                 </div>
 
                 <button className="button" onClick={handleLogin}>

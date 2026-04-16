@@ -5,14 +5,19 @@ function Pay() {
 
   const location = useLocation();
 
-  const routerProduct = location.state?.product;
-  const storedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+const routerProduct = location.state?.product;
+const storedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
 
-  const productData = routerProduct || storedProduct;
+const productData = routerProduct || storedProduct;  // ✅ FIRST
 
-  if (!productData) {
-    return <h2 style={{ textAlign: "center" }}>No Order Found</h2>;
-  }
+console.log("Pay page productData:", productData);
+console.log("Shop ID in Pay:", productData.shopId);
+
+if (!productData) {
+  return <h2 style={{ textAlign: "center" }}>No Order Found</h2>;
+}
+
+const shopId = productData.shopId;  // ✅ AFTER
 
   const image = productData.image;
   const type = productData.type;
@@ -86,6 +91,7 @@ function Pay() {
       }
 
       u_id = saveData.u_id;
+      localStorage.setItem("userPhone", form.contact);
 
     } catch (err) {
       alert("Failed to save user details");
@@ -105,6 +111,7 @@ function Pay() {
             quantity: 1,
             price: rate,
             image,
+            shopId: shopId, 
             size: selectedSize   // ✅ ADD THIS
           }
         }),
@@ -344,5 +351,6 @@ function Pay() {
     </div>
   );
 }
+
 
 export default Pay;

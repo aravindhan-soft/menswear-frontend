@@ -1,32 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+function Home({ type, image, path, shopId }) {
+  const navigate = useNavigate();
 
-
-
-function Home (props){
-const navigate=useNavigate();
-
-    return(
-
-        <>
-
-
-        <div className="card"
-    onClick={() => {
-        if (props.path) {
-        navigate(props.path);
-        } else {
-        console.log("No path found for:", props.type);
-        }
-    }}  >
-                <img src={props.image} alt="preview" />
-                <p>{props.type}</p>
-
-
-
-    </div>
+  return (
+    <>
+      <div
+        className="card"
+        onClick={() => navigate(`/shop/${shopId}${path}`)}
+      >
+        <img src={image} alt={type} />
+        <p>{type}</p>
+      </div>
     </>
-    );
+  );
 }
-export default Home
+
+export default Home;
