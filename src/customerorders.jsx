@@ -10,7 +10,7 @@ function CustomerOrders() {
 
   useEffect(() => {
     if (userPhone) {
-      fetch(`http://localhost:5000/api/order/customer/${userPhone}`)
+      fetch(`http://menswear-backend-production.up.railway.app/api/order/customer/${userPhone}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {

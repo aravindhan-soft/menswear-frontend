@@ -9,7 +9,7 @@ function Printedcollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/getproducts?category=Printed&shopId=${shopId}`)
+    fetch(`http://menswear-backend-production.up.railway.app/api/getproducts?category=Printed&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) setProducts(res.data);

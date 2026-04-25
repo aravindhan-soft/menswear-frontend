@@ -9,7 +9,7 @@ function Checkedcollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/getproducts?category=Checked&shopId=${shopId}`)
+    fetch(`http://menswear-backend-production.up.railway.app/api/getproducts?category=Checked&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) setProducts(res.data);
