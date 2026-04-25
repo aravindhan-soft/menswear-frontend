@@ -64,7 +64,7 @@ function ShopCollections() {
 
   const loadProducts = async () => {
     try {
-      const res = await axios.get(`http://menswear-backend-production.up.railway.app/api/getAvailableStock/${shopId}`);
+      const res = await axios.get(`https://menswear-backend-production.up.railway.app/api/getAvailableStock/${shopId}`);
       if (res.data.success) {
         setProducts(res.data.data);
       }
@@ -112,7 +112,7 @@ function ShopCollections() {
   const loadShopName = async () => {
     try {
       // Use existing /api/shops endpoint and find our shop
-      const res = await axios.get("http://menswear-backend-production.up.railway.app/api/shops");
+      const res = await axios.get("https://menswear-backend-production.up.railway.app/api/shops");
       const shop = res.data.find((s) => String(s.si_id) === String(shopId));
       if (shop) setShopName(shop.shopname);
     } catch (error) {

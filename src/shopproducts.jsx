@@ -17,7 +17,7 @@ function ShopProducts() {
 
   const loadProducts = async () => {
     try {
-      const res = await fetch(`http://menswear-backend-production.up.railway.app/api/shopProducts/${shopId}`);
+      const res = await fetch(`https://menswear-backend-production.up.railway.app/api/shopProducts/${shopId}`);
       const data = await res.json();
       setProducts(data);
     } catch (err) {

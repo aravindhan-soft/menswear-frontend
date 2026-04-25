@@ -14,7 +14,7 @@ function ShopSelect() {
 
   const loadShops = async () => {
     try {
-      const res = await axios.get("http://menswear-backend-production.up.railway.app/api/shops");
+      const res = await axios.get("https://menswear-backend-production.up.railway.app/api/shops");
       setShops(res.data);
     } catch (error) {
       console.error("Error loading shops:", error);
@@ -43,7 +43,7 @@ function ShopSelect() {
               }}
             >
               <img
-                src={`http://menswear-backend-production.up.railway.app/upload/${shop.shop_logo}`}  // temporary image
+                src={`https://menswear-backend-production.up.railway.app/upload/${shop.shop_logo}`}  // temporary image
                 alt={shop.shopname}
               />
 

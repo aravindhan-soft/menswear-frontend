@@ -30,7 +30,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (role === "ADMIN") {
-      axios.get("http://menswear-backend-production.up.railway.app/api/shops")
+      axios.get("https://menswear-backend-production.up.railway.app/api/shops")
         .then(res => setShops(res.data))
         .catch(err => console.error(err));
     }
@@ -43,12 +43,12 @@ function Dashboard() {
 
     if (role === "ADMIN") {
       if (selectedShopId === "ALL") {
-        url = "http://menswear-backend-production.up.railway.app/dashboard/stats-all";
+        url = "https://menswear-backend-production.up.railway.app/dashboard/stats-all";
       } else {
-        url = `http://menswear-backend-production.up.railway.app/dashboard/stats/${selectedShopId}`;
+        url = `https://menswear-backend-production.up.railway.app/dashboard/stats/${selectedShopId}`;
       }
     } else {
-      url = `http://menswear-backend-production.up.railway.app/dashboard/stats/${shopId}`;
+      url = `https://menswear-backend-production.up.railway.app/dashboard/stats/${shopId}`;
     }
 
     axios.get(url)

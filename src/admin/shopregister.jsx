@@ -36,7 +36,7 @@ function ShopRegister() {
             formData.append("logo", logo);
 
             const res = await axios.post(
-                "http://menswear-backend-production.up.railway.app/api/shopregister",
+                "https://menswear-backend-production.up.railway.app/api/shopregister",
                 formData
             );
 

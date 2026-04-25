@@ -9,7 +9,7 @@ function PlainCollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`http://menswear-backend-production.up.railway.app/api/getproducts?category=Plain&shopId=${shopId}`)
+    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=Plain&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) {

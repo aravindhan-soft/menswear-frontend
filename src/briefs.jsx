@@ -9,7 +9,7 @@ function BriefsCollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`http://menswear-backend-production.up.railway.app/api/getproducts?category=Briefs&shopId=${shopId}`)
+    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=Briefs&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) setProducts(res.data);
