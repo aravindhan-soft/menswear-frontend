@@ -16,7 +16,7 @@ function Forgetpassword() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/generate-otp ", {
+      const res = await axios.post("http://menswear-backend-production.up.railway.app/api/generate-otp ", {
         phonenumber,
       });
 
@@ -37,7 +37,7 @@ const verifyOTP = async () => {
   }
 
   try {
-    const res = await axios.post("http://localhost:5000/api/verify-otp", {
+    const res = await axios.post("http://menswear-backend-production.up.railway.app/api/verify-otp", {
       phonenumber,
       otp,
     });

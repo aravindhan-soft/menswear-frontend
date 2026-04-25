@@ -11,7 +11,7 @@ function Availablestock() {
 
     useEffect(() => {
         if (role === "ADMIN") {
-            fetch("http://localhost:5000/api/shops")
+            fetch("http://menswear-backend-production.up.railway.app/api/shops")
                 .then(res => res.json())
                 .then(data => setShops(data))
                 .catch(err => console.error(err));
@@ -29,11 +29,11 @@ useEffect(() => {
   let finalShopId = role === "ADMIN" ? selectedShopId : shopid;
   
   // Actually, we don't know for sure if getAvailableStock/ALL exists and functions perfectly to get all stock, let's assume it does based on past curl test showing status 200. I'll use it here.
-  let targetUrl = `http://localhost:5000/getAvailableStock/${finalShopId}`;
+  let targetUrl = `http://menswear-backend-production.up.railway.app/getAvailableStock/${finalShopId}`;
 
   // If we require a generic endpoint for ALL, let's use what we found.
   if (role === "ADMIN" && finalShopId === "ALL") {
-      targetUrl = "http://localhost:5000/getAvailableStock/all";
+      targetUrl = "http://menswear-backend-production.up.railway.app/getAvailableStock/all";
   }
 
   fetch(targetUrl)

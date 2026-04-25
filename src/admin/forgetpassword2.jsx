@@ -16,7 +16,7 @@ function Forgetpassword2() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/reset-password", {
+      const res = await axios.post("http://menswear-backend-production.up.railway.app/api/reset-password", {
         phonenumber: Phonenumber,
         newpassword,
       });

@@ -54,7 +54,7 @@ function Uploadstock() {
         formData.append("bio", bio);
         formData.append("image", image);
 
-        const res = await fetch("http://localhost:5000/api/upStock", {
+        const res = await fetch("http://menswear-backend-production.up.railway.app/api/upStock", {
           method: "POST",
           body: formData
         });

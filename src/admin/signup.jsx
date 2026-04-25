@@ -20,7 +20,7 @@ async function onClick(event) {
   }
 
   try {
-    const res = await axios.post("http://localhost:5000/api/signup", {
+    const res = await axios.post("http://menswear-backend-production.up.railway.app/api/signup", {
       si_id: Date.now().toString(), // Unique ID
       phonenumber,
       pass_word,

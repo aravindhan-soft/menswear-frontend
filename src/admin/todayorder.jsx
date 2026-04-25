@@ -10,7 +10,7 @@ function Todayorder() {
 
   useEffect(() => {
     if (role === "ADMIN") {
-      fetch("http://localhost:5000/api/shops")
+      fetch("http://menswear-backend-production.up.railway.app/api/shops")
         .then(res => res.json())
         .then(data => setShops(data))
         .catch(err => console.error(err));
@@ -24,12 +24,12 @@ useEffect(() => {
 
   if (role === "ADMIN") {
     if (selectedShopId === "ALL") {
-      url = "http://localhost:5000/api/order/today-all";
+      url = "http://menswear-backend-production.up.railway.app/api/order/today-all";
     } else {
-      url = `http://localhost:5000/api/order/today/${selectedShopId}`;
+      url = `http://menswear-backend-production.up.railway.app/api/order/today/${selectedShopId}`;
     }
   } else {
-    url = `http://localhost:5000/api/order/today/${shopId}`; // 🔥 SHOP DATA
+    url = `http://menswear-backend-production.up.railway.app/api/order/today/${shopId}`; // 🔥 SHOP DATA
   }
 
   fetch(url)
