@@ -64,9 +64,12 @@ function ShopCollections() {
 
   const loadProducts = async () => {
     try {
-      const res = await axios.get(`https://menswear-backend-production.up.railway.app/api/getAvailableStock/${shopId}`);
+      // 🔍 Removed '/api' prefix to match backend routes
+      const res = await axios.get(`https://menswear-backend-production.up.railway.app/getAvailableStock/${shopId}`);
       if (res.data.success) {
-        setProducts(res.data.data);
+        // 🔍 Inject shopId into each product so search results carry the correct shop context
+        const productsWithShopId = res.data.data.map(p => ({ ...p, shopId }));
+        setProducts(productsWithShopId);
       }
     } catch (error) {
       console.error("Error loading products for search:", error);
@@ -86,13 +89,25 @@ function ShopCollections() {
   }, [search, products]);
 
   const filterProducts = (value) => {
-    const text = value.toLowerCase();
-    return products.filter(item =>
-      (item.product || "").toLowerCase().includes(text) ||
-      (item.category || "").toLowerCase().includes(text) ||
-      (item.variety || "").toLowerCase().includes(text) ||
-      (item.color || "").toLowerCase().includes(text)
-    );
+    const text = value.toLowerCase().trim();
+    if (!text) return [];
+
+    // Split search into keywords to handle multi-word searches (e.g., "blue shirt")
+    const keywords = text.split(/\s+/);
+
+    return products.filter(item => {
+      const p = (item.product || "").toLowerCase();
+      const c = (item.category || "").toLowerCase();
+      const v = (item.variety || "").toLowerCase();
+      const cl = (item.color || "").toLowerCase();
+      const b = (item.bio || "").toLowerCase();
+      const s = (item.sizes || []).map(sz => sz.size.toLowerCase()).join(" ");
+
+      const combinedData = `${p} ${c} ${v} ${cl} ${b} ${s}`;
+
+      // All keywords must be present in the product's combined data
+      return keywords.every(kw => combinedData.includes(kw));
+    });
   };
 
   const handleSearchClick = () => {
@@ -105,7 +120,7 @@ function ShopCollections() {
 
   const handleSuggestionClick = (item) => {
     navigate("/search", {
-      state: { results: [item], searchText: item.product },
+      state: { results: [item], searchText: `${item.category} ${item.product}` },
     });
   };
 
@@ -142,7 +157,10 @@ function ShopCollections() {
             padding: '5px 15px',
             height: '45px',
             borderRadius: '12px',
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px'
           }}>
             <input
               type="text"
@@ -153,7 +171,11 @@ function ShopCollections() {
               onKeyPress={(e) => e.key === 'Enter' && handleSearchClick()}
               style={{
                 height: '100%',
-                fontSize: '0.9rem'
+                fontSize: '0.9rem',
+                flex: 1,
+                border: 'none',
+                outline: 'none',
+                background: 'transparent'
               }}
             />
             <GoSearch 
@@ -177,8 +199,8 @@ function ShopCollections() {
                   >
                     <img src={item.image} alt={item.product} className="suggestion-img" />
                     <div className="suggestion-info">
-                      <span className="suggestion-name">{item.product}</span>
-                      <span className="suggestion-cat">{item.category} • {item.variety}</span>
+                      <span className="suggestion-name">{item.category} {item.product}</span>
+                      <span className="suggestion-cat">{item.color} • {item.variety}</span>
                     </div>
                   </div>
                 ))}
