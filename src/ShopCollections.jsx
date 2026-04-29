@@ -57,6 +57,8 @@ function ShopCollections() {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+
+  
   useEffect(() => {
     loadShopName();
     loadProducts();
