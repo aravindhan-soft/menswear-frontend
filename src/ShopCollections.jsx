@@ -62,7 +62,9 @@ function ShopCollections() {
     loadProducts();
   }, [shopId]);
  
+
   
+
   const loadProducts = async () => {
     try {
       // 🔍 Removed '/api' prefix to match backend routes
