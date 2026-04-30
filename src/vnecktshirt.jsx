@@ -9,7 +9,7 @@ function VNeckTshirtCollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=VNeck&shopId=${shopId}`)
+    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=V Neck&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) setProducts(res.data);

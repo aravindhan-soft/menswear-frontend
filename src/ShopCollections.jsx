@@ -58,15 +58,15 @@ function ShopCollections() {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
 
-  
-  
+
+
   useEffect(() => {
     loadShopName();
     loadProducts();
   }, [shopId]);
- 
 
-  
+
+
 
   const loadProducts = async () => {
     try {
@@ -184,22 +184,22 @@ function ShopCollections() {
                 background: 'transparent'
               }}
             />
-            <GoSearch 
-              className="zen-search-icon" 
+            <GoSearch
+              className="zen-search-icon"
               onClick={handleSearchClick}
               style={{ fontSize: '1.2rem' }}
             />
 
             {/* 🔥 SUGGESTIONS BOX */}
             {showSuggestions && filteredSuggestions.length > 0 && (
-              <div className="search-suggestions-box" style={{ 
-                left: '0', 
+              <div className="search-suggestions-box" style={{
+                left: '0',
                 right: '0',
                 marginTop: '10px'
               }}>
                 {filteredSuggestions.map((item) => (
-                  <div 
-                    key={item.pv_id} 
+                  <div
+                    key={item.pv_id}
                     className="suggestion-item"
                     onClick={() => handleSuggestionClick(item)}
                   >
@@ -219,25 +219,6 @@ function ShopCollections() {
         </div>
 
         <div className="collection-header">
-          <button
-            onClick={() => navigate("/")}
-            className="back-navigator"
-            style={{
-              background: "none",
-              border: "none",
-              fontSize: "1.1rem",
-              cursor: "pointer",
-              marginBottom: "10px",
-              color: "#64748b",
-              fontWeight: 600,
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-            }}
-          >
-            <IoIosArrowBack /> Switch Shop
-          </button>
-
           <span className="collection-subtitle">
             {shopName ? shopName.toUpperCase() : "SHOP"}
           </span>

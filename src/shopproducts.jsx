@@ -31,22 +31,7 @@ function ShopProducts() {
 
       <div className="collection-page">
         <div className="collection-header">
-
-          <button
-            onClick={() => navigate("/")}
-            className="back-navigator"
-            style={{
-              background: "none",
-              border: "none",
-              fontSize: "1.1rem",
-              cursor: "pointer",
-              marginBottom: "10px"
-            }}
-          >
-            <IoIosArrowBack /> Switch Shop
-          </button>
-
-          <h1> Products not Available</h1>
+          <h1>{products.length > 0 ? "Our Products" : "Products not Available"}</h1>
         </div>
 
         <div className="collection-grid">

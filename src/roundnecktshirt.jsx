@@ -9,7 +9,7 @@ function RoundNeckTshirtCollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=RoundNeck&shopId=${shopId}`)
+    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=Round Neck&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) setProducts(res.data);

@@ -196,10 +196,10 @@ const shopId = productData.shopId;  // ✅ AFTER
             </div>
             
             <div className="form-group">
-              <label>EMAIL OR PHONE NUMBER</label>
+              <label>PHONE NUMBER</label>
               <input 
                 name="contact" 
-                placeholder="Enter your email or phone" 
+                placeholder="Enter your phone number" 
                 value={form.contact} 
                 onChange={handleChange} 
               />

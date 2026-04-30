@@ -1169,13 +1169,11 @@
   .zen-utility {
     width: 100% !important;
     flex-direction: row !important;
-    /* BACK TO ROW FOR GRID FEEL */
-    justify-content: space-between !important;
+    justify-content: flex-end !important; /* Move icons to right side */
     align-items: center !important;
-    gap: 10px !important;
-    background-color: #f8fafc;
-    padding: 8px 12px !important;
-    border-radius: 12px;
+    gap: 15px !important;
+    background-color: transparent !important;
+    padding: 0 !important;
   }
 
   .zen-search {
