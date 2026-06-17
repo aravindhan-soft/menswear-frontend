@@ -9,7 +9,7 @@ function Stripescollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=Stripes&shopId=${shopId}`)
+    fetch(`https://menswear-backend-770o.onrender.com/api/getproducts?category=Stripes&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) setProducts(res.data);
@@ -49,3 +49,5 @@ function Stripescollection() {
 }
 
 export default Stripescollection;
+
+

@@ -77,7 +77,7 @@ const shopId = productData.shopId;  // ✅ AFTER
 
     // 🔹 SAVE USER + ADDRESS
     try {
-      const saveRes = await fetch("https://menswear-backend-production.up.railway.app/api/save", {
+      const saveRes = await fetch("https://menswear-backend-770o.onrender.com/api/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -100,7 +100,7 @@ const shopId = productData.shopId;  // ✅ AFTER
 
     // 🔹 CREATE ORDER
     try {
-      const orderRes = await fetch("https://menswear-backend-production.up.railway.app/api/order/create", {
+      const orderRes = await fetch("https://menswear-backend-770o.onrender.com/api/order/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -145,7 +145,7 @@ const shopId = productData.shopId;  // ✅ AFTER
     }
 
     try {
-      const res = await fetch("https://menswear-backend-production.up.railway.app/api/payment/create-order", {
+      const res = await fetch("https://menswear-backend-770o.onrender.com/api/payment/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: finalAmount, or_id }),
@@ -354,3 +354,5 @@ const shopId = productData.shopId;  // ✅ AFTER
 
 
 export default Pay;
+
+

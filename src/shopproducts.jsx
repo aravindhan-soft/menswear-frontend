@@ -17,7 +17,7 @@ function ShopProducts() {
 
   const loadProducts = async () => {
     try {
-      const res = await fetch(`https://menswear-backend-production.up.railway.app/api/shopProducts/${shopId}`);
+      const res = await fetch(`https://menswear-backend-770o.onrender.com/api/shopProducts/${shopId}`);
       const data = await res.json();
       setProducts(data);
     } catch (err) {
@@ -41,7 +41,7 @@ function ShopProducts() {
               pv_id={product.pv_id}
               sku_id={product.sku_id}
               type={product.product}
-              image={`http://menswear-backend-production.up.railway.app/product/${product.pv_id}`}
+              image={`https://menswear-backend-770o.onrender.com/product/${product.pv_id}`}
               bio={product.bio}
               sizes={product.size}
               variety={product.variety}
@@ -57,3 +57,4 @@ function ShopProducts() {
 }
 
 export default ShopProducts;
+

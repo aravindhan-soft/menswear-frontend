@@ -25,3 +25,4 @@ return (
 }
 
 export default Cartpage;
+

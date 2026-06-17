@@ -14,7 +14,7 @@ function ShopSelect() {
 
   const loadShops = async () => {
     try {
-      const res = await axios.get("https://menswear-backend-production.up.railway.app/api/shops");
+      const res = await axios.get("https://menswear-backend-770o.onrender.com/api/shops");
       setShops(res.data);
     } catch (error) {
       console.error("Error loading shops:", error);
@@ -43,7 +43,7 @@ function ShopSelect() {
               }}
             >
               <img
-                src={`https://menswear-backend-production.up.railway.app/upload/${shop.shop_logo}`}  // temporary image
+                src={`https://menswear-backend-770o.onrender.com/upload/${shop.shop_logo}`}  // temporary image
                 alt={shop.shopname}
               />
 
@@ -61,3 +61,4 @@ function ShopSelect() {
 }
 
 export default ShopSelect;
+

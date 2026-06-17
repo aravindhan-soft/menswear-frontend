@@ -146,3 +146,4 @@ const handleBuy = () => {
 }
 
 export default Home2;
+

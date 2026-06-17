@@ -16,7 +16,7 @@ function Forgetpassword2() {
     }
 
     try {
-      const res = await axios.post("https://menswear-backend-production.up.railway.app/api/reset-password", {
+      const res = await axios.post("https://menswear-backend-770o.onrender.com/api/reset-password", {
         phonenumber: Phonenumber,
         newpassword,
       });
@@ -68,3 +68,5 @@ function Forgetpassword2() {
 }
 
 export default Forgetpassword2;
+
+

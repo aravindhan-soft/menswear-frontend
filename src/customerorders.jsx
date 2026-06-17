@@ -10,7 +10,7 @@ function CustomerOrders() {
 
   useEffect(() => {
     if (userPhone) {
-      fetch(`https://menswear-backend-production.up.railway.app/api/order/customer/${userPhone}`)
+      fetch(`https://menswear-backend-770o.onrender.com/api/order/customer/${userPhone}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {
@@ -121,3 +121,5 @@ function CustomerOrders() {
 }
 
 export default CustomerOrders;
+
+

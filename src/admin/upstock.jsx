@@ -54,7 +54,7 @@ function Uploadstock() {
         formData.append("bio", bio);
         formData.append("image", image);
 
-        const res = await fetch("https://menswear-backend-production.up.railway.app/api/upStock", {
+        const res = await fetch("https://menswear-backend-770o.onrender.com/api/upStock", {
           method: "POST",
           body: formData
         });
@@ -492,4 +492,6 @@ function Uploadstock() {
 }
 
 export default Uploadstock;
+
+
 

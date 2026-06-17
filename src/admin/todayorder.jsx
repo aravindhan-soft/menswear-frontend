@@ -10,7 +10,7 @@ function Todayorder() {
 
   useEffect(() => {
     if (role === "ADMIN") {
-      fetch("https://menswear-backend-production.up.railway.app/api/shops")
+      fetch("https://menswear-backend-770o.onrender.com/api/shops")
         .then(res => res.json())
         .then(data => setShops(data))
         .catch(err => console.error(err));
@@ -24,12 +24,12 @@ useEffect(() => {
 
   if (role === "ADMIN") {
     if (selectedShopId === "ALL") {
-      url = "https://menswear-backend-production.up.railway.app/api/order/today-all";
+      url = "https://menswear-backend-770o.onrender.com/api/order/today-all";
     } else {
-      url = `https://menswear-backend-production.up.railway.app/api/order/today/${selectedShopId}`;
+      url = `https://menswear-backend-770o.onrender.com/api/order/today/${selectedShopId}`;
     }
   } else {
-    url = `https://menswear-backend-production.up.railway.app/api/order/today/${shopId}`; // 🔥 SHOP DATA
+    url = `https://menswear-backend-770o.onrender.com/api/order/today/${shopId}`; // 🔥 SHOP DATA
   }
 
   fetch(url)
@@ -97,3 +97,4 @@ useEffect(() => {
 
 
 export default Todayorder;
+

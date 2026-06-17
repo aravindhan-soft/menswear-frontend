@@ -71,7 +71,7 @@ function ShopCollections() {
   const loadProducts = async () => {
     try {
       // 🔍 Removed '/api' prefix to match backend routes
-      const res = await axios.get(`https://menswear-backend-production.up.railway.app/getAvailableStock/${shopId}`);
+      const res = await axios.get(`https://menswear-backend-770o.onrender.com/getAvailableStock/${shopId}`);
       if (res.data.success) {
         // 🔍 Inject shopId into each product so search results carry the correct shop context
         const productsWithShopId = res.data.data.map(p => ({ ...p, shopId }));
@@ -133,7 +133,7 @@ function ShopCollections() {
   const loadShopName = async () => {
     try {
       // Use existing /api/shops endpoint and find our shop
-      const res = await axios.get("https://menswear-backend-production.up.railway.app/api/shops");
+      const res = await axios.get("https://menswear-backend-770o.onrender.com/api/shops");
       const shop = res.data.find((s) => String(s.si_id) === String(shopId));
       if (shop) setShopName(shop.shopname);
     } catch (error) {
@@ -265,3 +265,5 @@ function ShopCollections() {
 }
 
 export default ShopCollections;
+
+

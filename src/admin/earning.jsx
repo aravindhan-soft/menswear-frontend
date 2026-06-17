@@ -30,7 +30,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (role === "ADMIN") {
-      axios.get("https://menswear-backend-production.up.railway.app/api/shops")
+      axios.get("https://menswear-backend-770o.onrender.com/api/shops")
         .then(res => setShops(res.data))
         .catch(err => console.error(err));
     }
@@ -43,12 +43,12 @@ function Dashboard() {
 
     if (role === "ADMIN") {
       if (selectedShopId === "ALL") {
-        url = "https://menswear-backend-production.up.railway.app/dashboard/stats-all";
+        url = "https://menswear-backend-770o.onrender.com/dashboard/stats-all";
       } else {
-        url = `https://menswear-backend-production.up.railway.app/dashboard/stats/${selectedShopId}`;
+        url = `https://menswear-backend-770o.onrender.com/dashboard/stats/${selectedShopId}`;
       }
     } else {
-      url = `https://menswear-backend-production.up.railway.app/dashboard/stats/${shopId}`;
+      url = `https://menswear-backend-770o.onrender.com/dashboard/stats/${shopId}`;
     }
 
     axios.get(url)
@@ -149,3 +149,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

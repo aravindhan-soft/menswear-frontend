@@ -9,7 +9,7 @@ function VestCollection() {
   const { shopId } = useParams();
 
   useEffect(() => {
-    fetch(`https://menswear-backend-production.up.railway.app/api/getproducts?category=Vest&shopId=${shopId}`)
+    fetch(`https://menswear-backend-770o.onrender.com/api/getproducts?category=Vest&shopId=${shopId}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success) setProducts(res.data);
@@ -48,3 +48,5 @@ function VestCollection() {
 }
 
 export default VestCollection;
+
+

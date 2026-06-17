@@ -36,7 +36,7 @@ function ShopRegister() {
             formData.append("logo", logo);
 
             const res = await axios.post(
-                "https://menswear-backend-production.up.railway.app/api/shopregister",
+                "https://menswear-backend-770o.onrender.com/api/shopregister",
                 formData
             );
 
@@ -145,3 +145,4 @@ function ShopRegister() {
 }
 
 export default ShopRegister;
+
